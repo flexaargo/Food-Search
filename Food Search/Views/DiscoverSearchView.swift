@@ -10,7 +10,7 @@ import UIKit
 
 class DiscoverSearchView: UIView {
   public let locationField: UITextField = {
-    let textField = CustomTextField(
+    let textField = PaddedTextField(
       font: .systemFont(ofSize: 18, weight: .regular),
       placeholder: "Location",
       backgroundColor: .backgroundLight,
@@ -21,7 +21,7 @@ class DiscoverSearchView: UIView {
   }()
   
   public let cuisineField: UITextField = {
-    let textField = CustomTextField(
+    let textField = PaddedTextField(
       font: .systemFont(ofSize: 18, weight: .regular),
       placeholder: "Cuisine",
       backgroundColor: .backgroundLight,
@@ -32,7 +32,7 @@ class DiscoverSearchView: UIView {
   }()
   
   public let priceField: UITextField = {
-    let textField = CustomTextField(
+    let textField = PaddedTextField(
       font: .systemFont(ofSize: 18, weight: .regular),
       placeholder: "$$$$",
       backgroundColor: .backgroundLight,
@@ -42,10 +42,32 @@ class DiscoverSearchView: UIView {
     return textField
   }()
   
+  public let goBtn: UIButton = {
+    let button = UIButton(
+      text: "Go",
+      font: .systemFont(ofSize: 18, weight: .regular),
+      textColor: .white,
+      backgroundColor: .primaryRed,
+      cornerRadius: 10,
+      padding: .init(top: 6, left: 10, bottom: 6, right: 10)
+    )
+    return button
+  }()
+  
+  public let randomizeBtn: UIButton = {
+    let button = UIButton(
+      image: #imageLiteral(resourceName: "Die"),
+      backgroundColor: .primaryRed,
+      cornerRadius: 10,
+      padding: .init(top: 5, left: 10.5, bottom: 5, right: 10.5)
+    )
+    return button
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    backgroundColor = .orange
+//    backgroundColor = .orange
     setupSubviews()
   }
   
@@ -57,7 +79,22 @@ class DiscoverSearchView: UIView {
 // MARK: Private methods
 private extension DiscoverSearchView {
   func setupSubviews() {
-    let fieldStackView = stackH(cuisineField, priceField, spacing: 7)
+    let fieldStackView = stackH(
+      cuisineField,
+      stackH(
+        priceField,
+        stackH(
+          goBtn,
+          randomizeBtn,
+          spacing: 7,
+          distribution: .fillEqually
+        ),
+        spacing: 7,
+        distribution: .fill
+      ),
+      spacing: 7,
+      distribution: .fillEqually
+    )
     
     addSubview(locationField)
     addSubview(fieldStackView)
@@ -73,5 +110,7 @@ private extension DiscoverSearchView {
       bottom: bottomAnchor, trailing: locationField.trailingAnchor,
       padding: .init(top: 12, left: 0, bottom: 12, right: 0)
     )
+    
+    priceField.constrainWidth(constant: 65)
   }
 }

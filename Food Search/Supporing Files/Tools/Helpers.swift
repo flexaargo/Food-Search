@@ -31,7 +31,7 @@ public func stackH(_ views: UIView..., spacing: CGFloat = 0,
   return stackView
 }
 
-class CustomTextField: UITextField {
+class PaddedTextField: UITextField {
   var padding: UIEdgeInsets!
   
   public convenience init(font: UIFont, placeholder: String, backgroundColor: UIColor, cornerRadius: CGFloat = 0, padding: UIEdgeInsets = .zero) {
@@ -53,5 +53,26 @@ class CustomTextField: UITextField {
   
   override func editingRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.inset(by: padding)
+  }
+}
+
+extension UIButton {
+  public convenience init(text: String? = nil, font: UIFont? = nil, textColor: UIColor? = nil,
+                          backgroundColor: UIColor? = nil, cornerRadius: CGFloat = 0,
+                          padding: UIEdgeInsets = .zero) {
+    self.init(type: .custom)
+    setTitle(text, for: .normal)
+    titleLabel?.font = font
+    titleLabel?.textColor = textColor
+    self.backgroundColor = backgroundColor
+    layer.cornerRadius = cornerRadius
+    titleEdgeInsets = padding
+  }
+  
+  public convenience init(image: UIImage, backgroundColor: UIColor? = nil,
+                          cornerRadius: CGFloat = 0, padding: UIEdgeInsets = .zero) {
+    self.init(backgroundColor: backgroundColor, cornerRadius: cornerRadius)
+    setImage(image, for: .normal)
+    imageEdgeInsets = padding
   }
 }
