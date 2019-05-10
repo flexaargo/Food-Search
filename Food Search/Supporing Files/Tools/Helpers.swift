@@ -8,6 +8,29 @@
 
 import UIKit
 
+private func stack(views: [UIView], spacing: CGFloat = 0,
+                   distribution: UIStackView.Distribution) -> UIStackView {
+  let stackView = UIStackView()
+  for view in views {
+    stackView.addArrangedSubview(view)
+  }
+  stackView.spacing = spacing
+  stackView.distribution = distribution
+  return stackView
+}
+
+public func stack(_ views: UIView..., spacing: CGFloat = 0,
+                  distribution: UIStackView.Distribution = .fillEqually) -> UIStackView {
+  return stack(views: views, spacing: spacing, distribution: distribution)
+}
+
+public func stackH(_ views: UIView..., spacing: CGFloat = 0,
+                   distribution: UIStackView.Distribution = .fillEqually) -> UIStackView {
+  let stackView = stack(views: views, spacing: spacing, distribution: distribution)
+  stackView.axis = .horizontal
+  return stackView
+}
+
 class CustomTextField: UITextField {
   var padding: UIEdgeInsets!
   
