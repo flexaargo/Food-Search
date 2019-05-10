@@ -17,6 +17,7 @@
 		D042367A228580F2005C5FAE /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0423679228580F2005C5FAE /* RestaurantViewController.swift */; };
 		D042367C22859406005C5FAE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042367B22859406005C5FAE /* Colors.swift */; };
 		D042367E228594BA005C5FAE /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042367D228594BA005C5FAE /* BaseNavigationController.swift */; };
+		D042368522859EA8005C5FAE /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368422859EA8005C5FAE /* UIView+Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D0423679228580F2005C5FAE /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		D042367B22859406005C5FAE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D042367D228594BA005C5FAE /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		D042368422859EA8005C5FAE /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		D042366F22857EC2005C5FAE /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D042368422859EA8005C5FAE /* UIView+Layout.swift */,
 				D042367B22859406005C5FAE /* Colors.swift */,
 			);
 			path = Tools;
@@ -194,6 +197,7 @@
 				D042367E228594BA005C5FAE /* BaseNavigationController.swift in Sources */,
 				D0423676228580AE005C5FAE /* NearbyViewController.swift in Sources */,
 				D042367C22859406005C5FAE /* Colors.swift in Sources */,
+				D042368522859EA8005C5FAE /* UIView+Layout.swift in Sources */,
 				D042367122857FA7005C5FAE /* TabViewController.swift in Sources */,
 				D0423678228580BC005C5FAE /* FavoritesViewController.swift in Sources */,
 				D042365922857942005C5FAE /* AppDelegate.swift in Sources */,
