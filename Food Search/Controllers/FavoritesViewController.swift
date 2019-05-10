@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FavoritesViewController.swift
 //  Food Search
 //
 //  Created by Alex Fargo on 5/10/19.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class FavoritesViewController: UIViewController {
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    title = "Favorites"
+    view.backgroundColor = .white
   }
-
-
 }
-

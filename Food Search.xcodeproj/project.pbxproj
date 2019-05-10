@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		D042365922857942005C5FAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042365822857942005C5FAE /* AppDelegate.swift */; };
-		D042365B22857942005C5FAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042365A22857942005C5FAE /* ViewController.swift */; };
-		D042365E22857942005C5FAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D042365C22857942005C5FAE /* Main.storyboard */; };
 		D042366022857945005C5FAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D042365F22857945005C5FAE /* Assets.xcassets */; };
 		D042366322857945005C5FAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D042366122857945005C5FAE /* LaunchScreen.storyboard */; };
+		D042367122857FA7005C5FAE /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042367022857FA7005C5FAE /* TabViewController.swift */; };
+		D04236742285809A005C5FAE /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04236732285809A005C5FAE /* DiscoverViewController.swift */; };
+		D0423676228580AE005C5FAE /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0423675228580AE005C5FAE /* NearbyViewController.swift */; };
+		D0423678228580BC005C5FAE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0423677228580BC005C5FAE /* FavoritesViewController.swift */; };
+		D042367A228580F2005C5FAE /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0423679228580F2005C5FAE /* RestaurantViewController.swift */; };
+		D042367C22859406005C5FAE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042367B22859406005C5FAE /* Colors.swift */; };
+		D042367E228594BA005C5FAE /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042367D228594BA005C5FAE /* BaseNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D042365522857941005C5FAE /* Food Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Food Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D042365822857942005C5FAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D042365A22857942005C5FAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D042365D22857942005C5FAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D042365F22857945005C5FAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D042366222857945005C5FAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D042366422857945005C5FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D042367022857FA7005C5FAE /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		D04236732285809A005C5FAE /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		D0423675228580AE005C5FAE /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		D0423677228580BC005C5FAE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		D0423679228580F2005C5FAE /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		D042367B22859406005C5FAE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D042367D228594BA005C5FAE /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +65,58 @@
 			isa = PBXGroup;
 			children = (
 				D042365822857942005C5FAE /* AppDelegate.swift */,
-				D042365A22857942005C5FAE /* ViewController.swift */,
-				D042365C22857942005C5FAE /* Main.storyboard */,
+				D042366D22857E13005C5FAE /* Controllers */,
+				D042366C22857E03005C5FAE /* Views */,
+				D042366A22857DF9005C5FAE /* Models */,
+				D042366E22857E1A005C5FAE /* Supporing Files */,
+			);
+			path = "Food Search";
+			sourceTree = "<group>";
+		};
+		D042366A22857DF9005C5FAE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D042366C22857E03005C5FAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D042366D22857E13005C5FAE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D042367022857FA7005C5FAE /* TabViewController.swift */,
+				D042367D228594BA005C5FAE /* BaseNavigationController.swift */,
+				D04236732285809A005C5FAE /* DiscoverViewController.swift */,
+				D0423675228580AE005C5FAE /* NearbyViewController.swift */,
+				D0423677228580BC005C5FAE /* FavoritesViewController.swift */,
+				D0423679228580F2005C5FAE /* RestaurantViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D042366E22857E1A005C5FAE /* Supporing Files */ = {
+			isa = PBXGroup;
+			children = (
+				D042366F22857EC2005C5FAE /* Tools */,
 				D042365F22857945005C5FAE /* Assets.xcassets */,
 				D042366122857945005C5FAE /* LaunchScreen.storyboard */,
 				D042366422857945005C5FAE /* Info.plist */,
 			);
-			path = "Food Search";
+			path = "Supporing Files";
+			sourceTree = "<group>";
+		};
+		D042366F22857EC2005C5FAE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				D042367B22859406005C5FAE /* Colors.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +179,6 @@
 			files = (
 				D042366322857945005C5FAE /* LaunchScreen.storyboard in Resources */,
 				D042366022857945005C5FAE /* Assets.xcassets in Resources */,
-				D042365E22857942005C5FAE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +189,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D042365B22857942005C5FAE /* ViewController.swift in Sources */,
+				D04236742285809A005C5FAE /* DiscoverViewController.swift in Sources */,
+				D042367A228580F2005C5FAE /* RestaurantViewController.swift in Sources */,
+				D042367E228594BA005C5FAE /* BaseNavigationController.swift in Sources */,
+				D0423676228580AE005C5FAE /* NearbyViewController.swift in Sources */,
+				D042367C22859406005C5FAE /* Colors.swift in Sources */,
+				D042367122857FA7005C5FAE /* TabViewController.swift in Sources */,
+				D0423678228580BC005C5FAE /* FavoritesViewController.swift in Sources */,
 				D042365922857942005C5FAE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +203,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D042365C22857942005C5FAE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D042365D22857942005C5FAE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D042366122857945005C5FAE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -284,7 +336,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AEXVC7BMBG;
-				INFOPLIST_FILE = "Food Search/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Food Search/Supporing Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -292,7 +344,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexfargo.Food-Search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,7 +354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AEXVC7BMBG;
-				INFOPLIST_FILE = "Food Search/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Food Search/Supporing Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,7 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "xyz.alexfargo.Food-Search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
