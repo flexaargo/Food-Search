@@ -36,7 +36,7 @@ extension YelpApiResource {
   }
 }
 
-struct SearchResultResource: YelpApiResource {
+struct SearchResultsResource: YelpApiResource {
   typealias Model = YSearchResult
   
   let methodPath = "businesses/search"
