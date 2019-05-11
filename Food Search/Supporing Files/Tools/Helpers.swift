@@ -77,3 +77,33 @@ extension UIButton {
   }
 }
 
+extension UILabel {
+  public convenience init(text: String? = nil, font: UIFont? = nil, textColor: UIColor? = nil) {
+    self.init()
+    self.text = text
+    self.font = font
+    self.textColor = textColor
+  }
+}
+
+public func convertToMiles(meters: Double) -> Double {
+  return meters * 0.00062137
+}
+
+extension Double {
+  var formattedMiles: String {
+    let formatter = NumberFormatter()
+    formatter.maximumFractionDigits = 1
+    formatter.minimumFractionDigits = 1
+    formatter.minimumIntegerDigits = 1
+    return formatter.string(from: NSNumber(value: self))! + " mi"
+  }
+}
+
+extension Int {
+  var formattedReviewCount: String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    return formatter.string(from: NSNumber(value: self))! + " Reviews"
+  }
+}

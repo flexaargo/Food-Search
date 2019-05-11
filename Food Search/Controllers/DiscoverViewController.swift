@@ -10,10 +10,15 @@ import UIKit
 
 class DiscoverViewController: UIViewController {
   
+  private var restaurants: [YRestaurantSimple] = []
   private var request: AnyObject?
   
   lazy var searchView: DiscoverSearchView = {
     return DiscoverSearchView(frame: .zero)
+  }()
+  
+  lazy var tableView: DiscoverTableView = {
+    return DiscoverTableView(frame: .zero, style: .plain)
   }()
   
   override func viewDidLoad() {
@@ -27,10 +32,23 @@ private extension DiscoverViewController {
   func setup() {
     title = "Discover"
     view.backgroundColor = .white
+    
+    tableView.delegate = self
+    tableView.dataSource = self
+//    tableView.rowHeight = UITableView.automaticDimension
+    
     view.addSubview(searchView)
+    view.addSubview(tableView)
+    
     searchView.anchor(
       top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor,
-      bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor,
+      bottom: tableView.topAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor,
+      padding: .init(top: 0, left: 0, bottom: 0, right: 0)
+    )
+    
+    tableView.anchor(
+      top: searchView.bottomAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor,
+      bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor,
       padding: .init(top: 0, left: 0, bottom: 0, right: 0)
     )
   }
@@ -40,7 +58,8 @@ private extension DiscoverViewController {
     searchResultsResource.params = [
       "location=Chino%20Hills)",
       "attributes=hot_and_new",
-      "open_now=true"
+      "categories=restaurants"
+//      "open_now=true"
     ]
     let searchResultsRequest = YelpApiRequest(resource: searchResultsResource)
     request = searchResultsRequest
@@ -48,7 +67,32 @@ private extension DiscoverViewController {
       guard let restaurants = searchResult?.restaurants else {
         return
       }
-      print(restaurants[0].name)
+      self?.restaurants = restaurants
+      DispatchQueue.main.async {
+        self?.tableView.reloadData()
+      }
     }
   }
+}
+
+extension DiscoverViewController: UITableViewDelegate {
+//  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//    return 98
+//  }
+}
+
+extension DiscoverViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return restaurants.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantCell.reuseIdentifier, for: indexPath) as! RestaurantCell
+    
+    cell.restaurant = restaurants[indexPath.row]
+    
+    return cell
+  }
+  
+  
 }
