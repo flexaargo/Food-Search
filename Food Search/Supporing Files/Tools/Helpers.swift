@@ -60,10 +60,10 @@ extension UIButton {
   public convenience init(text: String? = nil, font: UIFont? = nil, textColor: UIColor? = nil,
                           backgroundColor: UIColor? = nil, cornerRadius: CGFloat = 0,
                           padding: UIEdgeInsets = .zero) {
-    self.init(type: .custom)
+    self.init(type: .system)
     setTitle(text, for: .normal)
     titleLabel?.font = font
-    titleLabel?.textColor = textColor
+    setTitleColor(textColor, for: .normal)
     self.backgroundColor = backgroundColor
     layer.cornerRadius = cornerRadius
     titleEdgeInsets = padding
@@ -73,6 +73,7 @@ extension UIButton {
                           cornerRadius: CGFloat = 0, padding: UIEdgeInsets = .zero) {
     self.init(backgroundColor: backgroundColor, cornerRadius: cornerRadius)
     setImage(image, for: .normal)
+    tintColor = .white
     imageEdgeInsets = padding
   }
 }

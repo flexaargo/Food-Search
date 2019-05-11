@@ -64,6 +64,12 @@ class DiscoverSearchView: UIView {
     return button
   }()
   
+  let separator: UIView = {
+    let view = UIView()
+    view.backgroundColor = .separator
+    return view
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
@@ -98,6 +104,7 @@ private extension DiscoverSearchView {
     
     addSubview(locationField)
     addSubview(fieldStackView)
+    addSubview(separator)
     
     locationField.anchor(
       top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
@@ -107,10 +114,18 @@ private extension DiscoverSearchView {
     
     fieldStackView.anchor(
       top: locationField.bottomAnchor, leading: locationField.leadingAnchor,
-      bottom: bottomAnchor, trailing: locationField.trailingAnchor,
+      bottom: separator.topAnchor, trailing: locationField.trailingAnchor,
       padding: .init(top: 12, left: 0, bottom: 12, right: 0)
     )
     
     priceField.constrainWidth(constant: 65)
+    
+    separator.anchor(
+      top: fieldStackView.bottomAnchor, leading: leadingAnchor,
+      bottom: bottomAnchor, trailing: trailingAnchor,
+      padding: .init(top: 12, left: 0, bottom: 0, right: 0)
+    )
+    
+    separator.constrainHeight(constant: 1)
   }
 }
