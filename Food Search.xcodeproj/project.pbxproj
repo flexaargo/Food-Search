@@ -20,6 +20,11 @@
 		D042368522859EA8005C5FAE /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368422859EA8005C5FAE /* UIView+Layout.swift */; };
 		D042368722859F38005C5FAE /* DiscoverSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368622859F38005C5FAE /* DiscoverSearchView.swift */; };
 		D042368922859FDC005C5FAE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368822859FDC005C5FAE /* Helpers.swift */; };
+		D042368B22862B53005C5FAE /* DiscoverTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368A22862B53005C5FAE /* DiscoverTableView.swift */; };
+		D042368D22862D66005C5FAE /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368C22862D66005C5FAE /* RestaurantCell.swift */; };
+		D042368F22862DA4005C5FAE /* Resturant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368E22862DA4005C5FAE /* Resturant.swift */; };
+		D042369222864A98005C5FAE /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369122864A98005C5FAE /* Service.swift */; };
+		D042369422864ACA005C5FAE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369322864ACA005C5FAE /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		D042368422859EA8005C5FAE /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		D042368622859F38005C5FAE /* DiscoverSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverSearchView.swift; sourceTree = "<group>"; };
 		D042368822859FDC005C5FAE /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		D042368A22862B53005C5FAE /* DiscoverTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableView.swift; sourceTree = "<group>"; };
+		D042368C22862D66005C5FAE /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		D042368E22862DA4005C5FAE /* Resturant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resturant.swift; sourceTree = "<group>"; };
+		D042369122864A98005C5FAE /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		D042369322864ACA005C5FAE /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +84,8 @@
 				D042366D22857E13005C5FAE /* Controllers */,
 				D042366C22857E03005C5FAE /* Views */,
 				D042366A22857DF9005C5FAE /* Models */,
+				D042369022864A7E005C5FAE /* Services */,
+				D042369522864AF5005C5FAE /* Secret */,
 				D042366E22857E1A005C5FAE /* Supporing Files */,
 			);
 			path = "Food Search";
@@ -82,6 +94,7 @@
 		D042366A22857DF9005C5FAE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D042368E22862DA4005C5FAE /* Resturant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -90,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				D042368622859F38005C5FAE /* DiscoverSearchView.swift */,
+				D042368A22862B53005C5FAE /* DiscoverTableView.swift */,
+				D042368C22862D66005C5FAE /* RestaurantCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,6 +141,22 @@
 				D042368822859FDC005C5FAE /* Helpers.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		D042369022864A7E005C5FAE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D042369122864A98005C5FAE /* Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D042369522864AF5005C5FAE /* Secret */ = {
+			isa = PBXGroup;
+			children = (
+				D042369322864ACA005C5FAE /* Secrets.swift */,
+			);
+			path = Secret;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,14 +230,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D04236742285809A005C5FAE /* DiscoverViewController.swift in Sources */,
+				D042369422864ACA005C5FAE /* Secrets.swift in Sources */,
 				D042367A228580F2005C5FAE /* RestaurantViewController.swift in Sources */,
+				D042369222864A98005C5FAE /* Service.swift in Sources */,
 				D042367E228594BA005C5FAE /* BaseNavigationController.swift in Sources */,
 				D0423676228580AE005C5FAE /* NearbyViewController.swift in Sources */,
+				D042368F22862DA4005C5FAE /* Resturant.swift in Sources */,
+				D042368B22862B53005C5FAE /* DiscoverTableView.swift in Sources */,
 				D042368922859FDC005C5FAE /* Helpers.swift in Sources */,
 				D042367C22859406005C5FAE /* Colors.swift in Sources */,
 				D042368522859EA8005C5FAE /* UIView+Layout.swift in Sources */,
 				D042367122857FA7005C5FAE /* TabViewController.swift in Sources */,
 				D042368722859F38005C5FAE /* DiscoverSearchView.swift in Sources */,
+				D042368D22862D66005C5FAE /* RestaurantCell.swift in Sources */,
 				D0423678228580BC005C5FAE /* FavoritesViewController.swift in Sources */,
 				D042365922857942005C5FAE /* AppDelegate.swift in Sources */,
 			);
