@@ -23,8 +23,9 @@
 		D042368B22862B53005C5FAE /* DiscoverTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368A22862B53005C5FAE /* DiscoverTableView.swift */; };
 		D042368D22862D66005C5FAE /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368C22862D66005C5FAE /* RestaurantCell.swift */; };
 		D042368F22862DA4005C5FAE /* Resturant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042368E22862DA4005C5FAE /* Resturant.swift */; };
-		D042369222864A98005C5FAE /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369122864A98005C5FAE /* Service.swift */; };
+		D042369222864A98005C5FAE /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369122864A98005C5FAE /* Resources.swift */; };
 		D042369422864ACA005C5FAE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369322864ACA005C5FAE /* Secrets.swift */; };
+		D04236972286821D005C5FAE /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04236962286821D005C5FAE /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,8 +47,9 @@
 		D042368A22862B53005C5FAE /* DiscoverTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableView.swift; sourceTree = "<group>"; };
 		D042368C22862D66005C5FAE /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		D042368E22862DA4005C5FAE /* Resturant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resturant.swift; sourceTree = "<group>"; };
-		D042369122864A98005C5FAE /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		D042369122864A98005C5FAE /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		D042369322864ACA005C5FAE /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		D04236962286821D005C5FAE /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +148,8 @@
 		D042369022864A7E005C5FAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D042369122864A98005C5FAE /* Service.swift */,
+				D042369122864A98005C5FAE /* Resources.swift */,
+				D04236962286821D005C5FAE /* Network.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -232,13 +235,14 @@
 				D04236742285809A005C5FAE /* DiscoverViewController.swift in Sources */,
 				D042369422864ACA005C5FAE /* Secrets.swift in Sources */,
 				D042367A228580F2005C5FAE /* RestaurantViewController.swift in Sources */,
-				D042369222864A98005C5FAE /* Service.swift in Sources */,
+				D042369222864A98005C5FAE /* Resources.swift in Sources */,
 				D042367E228594BA005C5FAE /* BaseNavigationController.swift in Sources */,
 				D0423676228580AE005C5FAE /* NearbyViewController.swift in Sources */,
 				D042368F22862DA4005C5FAE /* Resturant.swift in Sources */,
 				D042368B22862B53005C5FAE /* DiscoverTableView.swift in Sources */,
 				D042368922859FDC005C5FAE /* Helpers.swift in Sources */,
 				D042367C22859406005C5FAE /* Colors.swift in Sources */,
+				D04236972286821D005C5FAE /* Network.swift in Sources */,
 				D042368522859EA8005C5FAE /* UIView+Layout.swift in Sources */,
 				D042367122857FA7005C5FAE /* TabViewController.swift in Sources */,
 				D042368722859F38005C5FAE /* DiscoverSearchView.swift in Sources */,

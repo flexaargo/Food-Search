@@ -10,7 +10,7 @@ import Foundation
 
 struct YSearchResult {
   let count: Int
-  let restaurants: [YResturantSearch]
+  let restaurants: [YRestaurantSimple]
 }
 
 extension YSearchResult: Decodable {
@@ -20,7 +20,7 @@ extension YSearchResult: Decodable {
   }
 }
 
-struct YResturantSearch {
+struct YRestaurantSimple {
   let id: String
   let alias: String
   let name: String
@@ -33,7 +33,7 @@ struct YResturantSearch {
   let distance: Double
 }
 
-extension YResturantSearch: Decodable {
+extension YRestaurantSimple: Decodable {
   enum CodingKeys: String, CodingKey {
     case id
     case alias
