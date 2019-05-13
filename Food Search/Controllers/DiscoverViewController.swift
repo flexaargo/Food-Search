@@ -35,6 +35,7 @@ private extension DiscoverViewController {
     
     tableView.delegate = self
     tableView.dataSource = self
+    tableView.separatorStyle = .none
 //    tableView.rowHeight = UITableView.automaticDimension
     
     view.addSubview(searchView)

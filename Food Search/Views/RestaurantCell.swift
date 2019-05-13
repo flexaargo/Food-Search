@@ -90,6 +90,13 @@ class RestaurantCell: UITableViewCell {
     return label
   }()
   
+  
+  let separator: UIView = {
+    let view = UIView()
+    view.backgroundColor = .separator
+    return view
+  }()
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .default, reuseIdentifier: reuseIdentifier)
     setupSubviews()
@@ -123,6 +130,7 @@ private extension RestaurantCell {
     addSubview(topStackView)
     addSubview(midStackView)
     addSubview(addressLabel)
+    addSubview(separator)
     
     topStackView.anchor(
       top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
@@ -140,8 +148,15 @@ private extension RestaurantCell {
     
     addressLabel.anchor(
       top: midStackView.bottomAnchor, leading: topStackView.leadingAnchor,
-      bottom: bottomAnchor, trailing: topStackView.trailingAnchor,
+      bottom: separator.topAnchor, trailing: topStackView.trailingAnchor,
       padding: .init(top: 6, left: 0, bottom: 10, right: 0)
+    )
+    
+    separator.constrainHeight(constant: 1)
+    separator.anchor(
+      top: addressLabel.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
+      bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
+      padding: .init(top: 10, left: 16, bottom: 0, right: 16)
     )
   }
 }
