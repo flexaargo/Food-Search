@@ -27,6 +27,8 @@
 		D042369422864ACA005C5FAE /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369322864ACA005C5FAE /* Secrets.swift */; };
 		D04236972286821D005C5FAE /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04236962286821D005C5FAE /* Network.swift */; };
 		D042369922868C49005C5FAE /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369822868C49005C5FAE /* ReuseIdentifying.swift */; };
+		D0D70849228A1BFE00B919AD /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D70848228A1BFE00B919AD /* categories.json */; };
+		D0D7084B228A264400B919AD /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084A228A264400B919AD /* Categories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		D042369322864ACA005C5FAE /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		D04236962286821D005C5FAE /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		D042369822868C49005C5FAE /* ReuseIdentifying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
+		D0D70848228A1BFE00B919AD /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
+		D0D7084A228A264400B919AD /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 		D042366E22857E1A005C5FAE /* Supporing Files */ = {
 			isa = PBXGroup;
 			children = (
+				D0D70848228A1BFE00B919AD /* categories.json */,
+				D0D7084A228A264400B919AD /* Categories.swift */,
 				D042366F22857EC2005C5FAE /* Tools */,
 				D042365F22857945005C5FAE /* Assets.xcassets */,
 				D042366122857945005C5FAE /* LaunchScreen.storyboard */,
@@ -224,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D042366322857945005C5FAE /* LaunchScreen.storyboard in Resources */,
+				D0D70849228A1BFE00B919AD /* categories.json in Resources */,
 				D042366022857945005C5FAE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +251,7 @@
 				D0423676228580AE005C5FAE /* NearbyViewController.swift in Sources */,
 				D042368F22862DA4005C5FAE /* Resturant.swift in Sources */,
 				D042368B22862B53005C5FAE /* DiscoverTableView.swift in Sources */,
+				D0D7084B228A264400B919AD /* Categories.swift in Sources */,
 				D042368922859FDC005C5FAE /* Helpers.swift in Sources */,
 				D042367C22859406005C5FAE /* Colors.swift in Sources */,
 				D04236972286821D005C5FAE /* Network.swift in Sources */,
