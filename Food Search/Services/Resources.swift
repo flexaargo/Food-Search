@@ -48,7 +48,7 @@ struct RestaurantDetailResource: YelpApiResource {
   
   var id: String!
   var methodPath: String {
-    return "search/" + id
+    return "businesses/" + id
   }
   var params: [String] = []
 }

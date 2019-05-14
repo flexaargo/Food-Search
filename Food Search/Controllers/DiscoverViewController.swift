@@ -103,7 +103,7 @@ private extension DiscoverViewController {
 extension DiscoverViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    let detailsVC = RestaurantViewController(/*restaurantId: restaurants[indexPath.row].id*/)
+    let detailsVC = RestaurantViewController(restaurantId: restaurants[indexPath.row].id)
     navigationController?.pushViewController(detailsVC, animated: true)
   }
 }
