@@ -13,6 +13,8 @@ class RestaurantViewController: UIViewController {
   private var restaurant: YRestaurantDetail!
   private var request: AnyObject?
   
+  lazy var scrollView = DetailScrollView()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
@@ -31,6 +33,15 @@ class RestaurantViewController: UIViewController {
 private extension RestaurantViewController {
   func setup() {
     view.backgroundColor = .white
+    extendedLayoutIncludesOpaqueBars = true
+    
+    // MARK: - Setup subviews
+    view.addSubview(scrollView)
+    
+    scrollView.anchor(
+      top: view.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor,
+      bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor
+    )
   }
   
   func fetchRestaurant(withId id: String) {
@@ -45,6 +56,20 @@ private extension RestaurantViewController {
       }
       self?.restaurant = restaurant
       print(restaurant.name)
+      DispatchQueue.main.async {
+        self?.assignValues()
+      }
     }
+  }
+  
+  func assignValues() {
+    scrollView.headerView.detailHeader = DetailHeader(
+      name: restaurant.name,
+      reviewCount: restaurant.reviewCount,
+      rating: restaurant.rating,
+      price: restaurant.price,
+      categories: restaurant.categories,
+      hours: restaurant.hours
+    )
   }
 }
