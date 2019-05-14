@@ -55,6 +55,9 @@ private extension DiscoverViewController {
 //    tableView.rowHeight = UITableView.automaticDimension
     
     // MARK: - searchView setup
+    searchView.locationField.delegate = self
+    searchView.cuisineField.delegate = self
+    searchView.priceField.delegate = self
     searchView.cuisineField.inputView = categoryPicker
     searchView.priceField.inputView = pricePicker
     
@@ -98,9 +101,11 @@ private extension DiscoverViewController {
 }
 
 extension DiscoverViewController: UITableViewDelegate {
-//  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return 98
-//  }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    let detailsVC = RestaurantViewController(/*restaurantId: restaurants[indexPath.row].id*/)
+    navigationController?.pushViewController(detailsVC, animated: true)
+  }
 }
 
 extension DiscoverViewController: UITableViewDataSource {
@@ -148,5 +153,15 @@ extension DiscoverViewController: UIPickerViewDataSource {
     } else {
       return Price.allCases.count
     }
+  }
+}
+
+extension DiscoverViewController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    tableView.isUserInteractionEnabled = false
+  }
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    tableView.isUserInteractionEnabled = true
   }
 }
