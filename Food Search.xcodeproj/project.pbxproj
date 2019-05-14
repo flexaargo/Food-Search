@@ -29,6 +29,7 @@
 		D042369922868C49005C5FAE /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042369822868C49005C5FAE /* ReuseIdentifying.swift */; };
 		D0D70849228A1BFE00B919AD /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D70848228A1BFE00B919AD /* categories.json */; };
 		D0D7084B228A264400B919AD /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084A228A264400B919AD /* Categories.swift */; };
+		D0D7084D228A3A6B00B919AD /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084C228A3A6B00B919AD /* Price.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D042369822868C49005C5FAE /* ReuseIdentifying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
 		D0D70848228A1BFE00B919AD /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
 		D0D7084A228A264400B919AD /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		D0D7084C228A3A6B00B919AD /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				D0D70848228A1BFE00B919AD /* categories.json */,
+				D0D7084C228A3A6B00B919AD /* Price.swift */,
 				D0D7084A228A264400B919AD /* Categories.swift */,
 				D042366F22857EC2005C5FAE /* Tools */,
 				D042365F22857945005C5FAE /* Assets.xcassets */,
@@ -255,6 +258,7 @@
 				D042368922859FDC005C5FAE /* Helpers.swift in Sources */,
 				D042367C22859406005C5FAE /* Colors.swift in Sources */,
 				D04236972286821D005C5FAE /* Network.swift in Sources */,
+				D0D7084D228A3A6B00B919AD /* Price.swift in Sources */,
 				D042368522859EA8005C5FAE /* UIView+Layout.swift in Sources */,
 				D042367122857FA7005C5FAE /* TabViewController.swift in Sources */,
 				D042368722859F38005C5FAE /* DiscoverSearchView.swift in Sources */,

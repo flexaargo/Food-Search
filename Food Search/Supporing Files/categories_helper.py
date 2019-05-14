@@ -19,7 +19,7 @@ def getCategories(parent_category: str) -> [[]]:
 def main():
   categories = getCategories(parent_category='restaurants')
 
-  header = 'import Foundation\n\nenum Categories: String {\n'
+  header = 'import Foundation\n\nenum Categories: String, CaseIterable {\n'
   footer = '}\n'
 
   with open('Categories.swift', 'w+') as categories_file:

@@ -108,3 +108,16 @@ extension Int {
     return formatter.string(from: NSNumber(value: self))! + " Reviews"
   }
 }
+
+// Calling dismissKeyboardOnTap in ViewDidLoad of a ViewController will allow the user to tap outside of the keyboard to dismiss it
+extension UIViewController {
+  func dismissKeyboardOnTap() {
+    let tapToDismissKeyboard = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    tapToDismissKeyboard.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapToDismissKeyboard)
+  }
+  
+  @objc func dismissKeyboard() {
+    view.endEditing(true)
+  }
+}

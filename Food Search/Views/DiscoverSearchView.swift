@@ -17,6 +17,7 @@ class DiscoverSearchView: UIView {
       cornerRadius: 10,
       padding: .init(top: 6, left: 10, bottom: 6, right: 10)
     )
+    textField.autocapitalizationType = .words
     return textField
   }()
   
@@ -28,6 +29,7 @@ class DiscoverSearchView: UIView {
       cornerRadius: 10,
       padding: .init(top: 6, left: 10, bottom: 6, right: 10)
     )
+    textField.tintColor = .clear
     return textField
   }()
   
@@ -39,6 +41,7 @@ class DiscoverSearchView: UIView {
       cornerRadius: 10,
       padding: .init(top: 6, left: 10, bottom: 6, right: 10)
     )
+    textField.tintColor = .clear
     return textField
   }()
   

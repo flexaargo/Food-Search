@@ -21,6 +21,20 @@ class DiscoverViewController: UIViewController {
     return DiscoverTableView(frame: .zero, style: .plain)
   }()
   
+  lazy var categoryPicker: UIPickerView = {
+    let picker = UIPickerView()
+    picker.delegate = self
+    picker.dataSource = self
+    return picker
+  }()
+  
+  lazy var pricePicker: UIPickerView = {
+    let picker = UIPickerView()
+    picker.delegate = self
+    picker.dataSource = self
+    return picker
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
@@ -32,12 +46,19 @@ private extension DiscoverViewController {
   func setup() {
     title = "Discover"
     view.backgroundColor = .white
+    dismissKeyboardOnTap()
     
+    // MARK: - tableView setup
     tableView.delegate = self
     tableView.dataSource = self
     tableView.separatorStyle = .none
 //    tableView.rowHeight = UITableView.automaticDimension
     
+    // MARK: - searchView setup
+    searchView.cuisineField.inputView = categoryPicker
+    searchView.priceField.inputView = pricePicker
+    
+    // MARK: - subviews setup
     view.addSubview(searchView)
     view.addSubview(tableView)
     
@@ -94,6 +115,38 @@ extension DiscoverViewController: UITableViewDataSource {
     
     return cell
   }
+}
+
+extension DiscoverViewController: UIPickerViewDelegate {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    if pickerView == categoryPicker {
+      return Categories.allCases[row].rawValue
+    } else {
+      return Price.allCases[row].rawValue
+    }
+  }
   
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    if pickerView == categoryPicker {
+      searchView.cuisineField.text = Categories.allCases[row].rawValue
+    } else {
+      searchView.priceField.text = Price.allCases[row].rawValue
+    }
+    
+    // TODO: set the current cuisine to the selected cuisine
+  }
+}
+
+extension DiscoverViewController: UIPickerViewDataSource {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
   
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    if pickerView == categoryPicker {
+      return Categories.allCases.count
+    } else {
+      return Price.allCases.count
+    }
+  }
 }

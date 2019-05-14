@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Categories: String {
+enum Categories: String, CaseIterable {
 	case afghani = "Afghan"
 	case african = "African"
 	case andalusian = "Andalusian"
