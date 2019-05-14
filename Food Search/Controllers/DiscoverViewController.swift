@@ -55,6 +55,9 @@ private extension DiscoverViewController {
 //    tableView.rowHeight = UITableView.automaticDimension
     
     // MARK: - searchView setup
+    searchView.locationField.delegate = self
+    searchView.cuisineField.delegate = self
+    searchView.priceField.delegate = self
     searchView.cuisineField.inputView = categoryPicker
     searchView.priceField.inputView = pricePicker
     
@@ -148,5 +151,15 @@ extension DiscoverViewController: UIPickerViewDataSource {
     } else {
       return Price.allCases.count
     }
+  }
+}
+
+extension DiscoverViewController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    tableView.isUserInteractionEnabled = false
+  }
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    tableView.isUserInteractionEnabled = true
   }
 }
