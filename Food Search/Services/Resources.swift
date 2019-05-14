@@ -31,6 +31,7 @@ extension YelpApiResource {
       let result = try JSONDecoder().decode(Model.self, from: data)
       return result
     } catch {
+      print(error)
       return nil
     }
   }

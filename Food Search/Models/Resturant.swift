@@ -55,7 +55,7 @@ struct YRestaurantDetail {
   let imageURL: String
   let isClosed: Bool
   let url: String
-  let price: String
+  let price: String?
   let phone: String
   let displayPhone: String
   let categories: [Category]
@@ -105,7 +105,7 @@ extension YRestaurantDetail: Decodable {
     self.imageURL = try container.decode(String.self, forKey: .imageURL)
     self.isClosed = try container.decode(Bool.self, forKey: .isClosed)
     self.url = try container.decode(String.self, forKey: .url)
-    self.price = try container.decode(String.self, forKey: .price)
+    self.price = try container.decodeIfPresent(String.self, forKey: .price)
     self.phone = try container.decode(String.self, forKey: .phone)
     self.displayPhone = try container.decode(String.self, forKey: .displayPhone)
     self.categories = try container.decode([Category].self, forKey: .categories)
