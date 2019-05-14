@@ -47,6 +47,7 @@ private extension DiscoverViewController {
     title = "Discover"
     view.backgroundColor = .white
     dismissKeyboardOnTap()
+    navigationItem.largeTitleDisplayMode = .always
     
     // MARK: - tableView setup
     tableView.delegate = self

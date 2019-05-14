@@ -34,6 +34,7 @@ private extension RestaurantViewController {
   func setup() {
     view.backgroundColor = .white
     extendedLayoutIncludesOpaqueBars = true
+    navigationItem.largeTitleDisplayMode = .never
     
     // MARK: - Setup subviews
     view.addSubview(scrollView)
