@@ -14,9 +14,14 @@ class DetailScrollView: UIScrollView {
     return DetailHeaderView(frame: .zero)
   }()
   
+  lazy var mapView: DetailMapView = {
+    return DetailMapView(frame: .zero)
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentSize = CGSize(width: frame.width, height: 1000)
+    delaysContentTouches = false
     setupSubviews()
   }
   
@@ -28,9 +33,15 @@ class DetailScrollView: UIScrollView {
 private extension DetailScrollView {
   func setupSubviews() {
     addSubview(headerView)
+    addSubview(mapView)
     
     headerView.anchor(
       top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
+      bottom: mapView.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor
+    )
+    
+    mapView.anchor(
+      top: headerView.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
       bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor
     )
   }

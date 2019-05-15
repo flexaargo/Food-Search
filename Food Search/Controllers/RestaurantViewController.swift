@@ -72,5 +72,7 @@ private extension RestaurantViewController {
       categories: restaurant.categories,
       hours: restaurant.hours
     )
+    
+    scrollView.mapView.location = restaurant.coordinates
   }
 }
