@@ -54,6 +54,13 @@ struct RestaurantDetailResource: YelpApiResource {
   var params: [String] = []
 }
 
-public class Service {
+struct ReviewsResource: YelpApiResource {
+  typealias Model = YRestaurantReviews
+  
+  var id: String!
+  var methodPath: String {
+    return "businesses/" + id + "/reviews"
+  }
+  var params: [String] = []
   
 }

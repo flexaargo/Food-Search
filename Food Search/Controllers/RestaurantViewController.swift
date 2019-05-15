@@ -13,8 +13,9 @@ import SDWebImage
 class RestaurantViewController: UIViewController {
   
   private var restaurant: YRestaurantDetail?
-//  private var reviews: YRestaurantReviews?
-  private var request: AnyObject?
+  private var reviews: YRestaurantReviews?
+  private var restaurantRequest: AnyObject?
+  private var reviewReqiest: AnyObject?
   
   lazy var scrollView = DetailScrollView()
   
@@ -30,6 +31,7 @@ class RestaurantViewController: UIViewController {
     scrollView.reviewsView.reviewsCollectionView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.dataSource = self
     fetchRestaurant(withId: restaurantId)
+    fetchRestaurantReviews(withId: restaurantId)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -56,7 +58,7 @@ private extension RestaurantViewController {
     var restaurantDetailResource = RestaurantDetailResource()
     restaurantDetailResource.id = id
     let restaurantDetailsRequest = YelpApiRequest(resource: restaurantDetailResource)
-    request = restaurantDetailsRequest
+    restaurantRequest = restaurantDetailsRequest
     restaurantDetailsRequest.load { [weak self] (restaurant) in
       guard let restaurant = restaurant else {
         print("failed")
@@ -66,6 +68,22 @@ private extension RestaurantViewController {
       print(restaurant.name)
       DispatchQueue.main.async {
         self?.assignValues()
+      }
+    }
+  }
+  
+  func fetchRestaurantReviews(withId id: String) {
+    var reviewsResource = ReviewsResource()
+    reviewsResource.id = id
+    let reviewsRequest = YelpApiRequest(resource: reviewsResource)
+    reviewReqiest = reviewsRequest
+    reviewsRequest.load { [weak self] (reviews) in
+      guard let reviews = reviews else {
+        print("failed")
+        return
+      }
+      self?.reviews = reviews
+      DispatchQueue.main.async {
         self?.scrollView.reviewsView.reviewsCollectionView.reloadData()
       }
     }
@@ -117,20 +135,26 @@ extension RestaurantViewController: MKMapViewDelegate {
   }
 }
 
-extension RestaurantViewController: UICollectionViewDelegate {
-  
-}
-
 extension RestaurantViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let reviews = reviews else {
       return 0
     }
-    return 3
+    return reviews.reviews.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.reuseIdentifier, for: indexPath) as! ReviewCell
+    
+    guard let reviews = reviews else {
+      return cell
+    }
+    
+    let review = reviews.reviews[indexPath.row]
+    
+    cell.review = review
+    cell.delegate = self
+    cell.profileImage.sd_setImage(with: URL(string: review.user.imageURL)!, completed: nil)
     
     return cell
   }
@@ -138,7 +162,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
 
 extension RestaurantViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return .init(width: 240, height: 210)
+    return .init(width: 222, height: 210)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -147,5 +171,11 @@ extension RestaurantViewController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
     return .init(top: 8, left: 16, bottom: 8, right: 16)
+  }
+}
+
+extension RestaurantViewController: ReviewCellDelegate {
+  func reviewCell(_ reviewCell: ReviewCell, linkTappedWithUrl url: URL) {
+    UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
 }

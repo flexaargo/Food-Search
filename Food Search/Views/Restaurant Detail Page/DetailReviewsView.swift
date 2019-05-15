@@ -24,6 +24,7 @@ class DetailReviewsView: UIView {
     let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collection.backgroundColor = .clear
     collection.register(ReviewCell.self, forCellWithReuseIdentifier: ReviewCell.reuseIdentifier)
+    collection.delaysContentTouches = false
     return collection
   }()
   

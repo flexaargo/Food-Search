@@ -128,6 +128,52 @@ extension YRestaurantDetail: Decodable {
   }
 }
 
+struct YRestaurantReviews {
+  let reviews: [YRestaurantReview]
+}
+
+extension YRestaurantReviews: Decodable {
+  enum CodingKeys: String, CodingKey {
+    case reviews
+  }
+}
+
+struct YRestaurantReview {
+  let id: String
+  let url: String
+  let text: String
+  let rating: Double
+  let timeCreated: String
+  let user: YUser
+}
+
+extension YRestaurantReview: Decodable {
+  enum CodingKeys: String, CodingKey {
+    case id
+    case url
+    case text
+    case rating
+    case timeCreated = "time_created"
+    case user
+  }
+}
+
+struct YUser {
+  let id: String
+  let profileURL: String
+  let imageURL: String
+  let name: String
+}
+
+extension YUser: Decodable {
+  enum CodingKeys: String, CodingKey {
+    case id
+    case profileURL = "profile_url"
+    case imageURL = "image_url"
+    case name
+  }
+}
+
 struct Coordinates {
   let latitude: Double
   let longitude: Double
