@@ -13,6 +13,8 @@ class DetailScrollView: UIScrollView {
   lazy var imageView: UIImageView = {
     let image = UIImageView(image: nil)
     image.backgroundColor = .lightGray
+    image.contentMode = .scaleAspectFill
+    image.clipsToBounds = true
     return image
   }()
   

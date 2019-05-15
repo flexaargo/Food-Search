@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SDWebImage
 
 class RestaurantViewController: UIViewController {
   
@@ -76,6 +77,8 @@ private extension RestaurantViewController {
     
     scrollView.mapView.location = restaurant.coordinates
     scrollView.mapView.mapView.delegate = self
+    
+    scrollView.imageView.sd_setImage(with: URL(string: restaurant.imageURL)!, completed: nil)
   }
 }
 
