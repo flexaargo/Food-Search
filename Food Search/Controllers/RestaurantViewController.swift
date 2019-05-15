@@ -22,8 +22,9 @@ class RestaurantViewController: UIViewController {
     setup()
   }
   
-  init(restaurantId: String) {
+  init(restaurantId: String, name: String) {
     super.init(nibName: nil, bundle: nil)
+    title = name
     fetchRestaurant(withId: restaurantId)
   }
   
