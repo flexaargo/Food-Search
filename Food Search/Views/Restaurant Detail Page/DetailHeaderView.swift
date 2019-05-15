@@ -26,6 +26,28 @@ class DetailHeaderView: UIView {
       if detailHeader.categories.count > 2 {
         category3.isHidden = false
         category3.label.text = detailHeader.categories[2].title
+        layoutIfNeeded()
+        // The category label is too large for the stackview
+//        print(categoriesStack.frame.maxX)
+//        print(UIScreen.main.bounds.maxX - 16)
+        if categoriesStack.frame.maxX >= UIScreen.main.bounds.maxX - 16 {
+          categoriesBottomAnchor.isActive = false
+          openStatusTopAnchor.isActive = false
+          
+          categoriesStack.removeArrangedSubview(category3)
+          addSubview(category3)
+          
+          category3.anchor(
+            top: categoriesStack.bottomAnchor, leading: categoriesStack.leadingAnchor,
+            bottom: openStatusLabel.topAnchor, trailing: nil,
+            padding: .init(top: 4, left: 0, bottom: 10, right: 0)
+          )
+          
+          categoriesStack.bottomAnchor.constraint(equalTo: category3.topAnchor, constant: -4)
+          
+          openStatusLabel.topAnchor.constraint(equalTo: category3.bottomAnchor, constant: 10)
+          layoutIfNeeded()
+        }
       }
       
       let priceText = NSMutableAttributedString()
@@ -128,6 +150,8 @@ class DetailHeaderView: UIView {
     distribution: .fill
   )
   
+  var categoriesBottomAnchor: NSLayoutConstraint!
+  
   let openStatusLabel: UILabel = {
     let label = UILabel(
       text: "Open until 10:30 PM",
@@ -136,6 +160,8 @@ class DetailHeaderView: UIView {
     )
     return label
   }()
+  
+  var openStatusTopAnchor: NSLayoutConstraint!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -200,15 +226,21 @@ private extension DetailHeaderView {
     
     categoriesStack.anchor(
       top: reviewsStack.bottomAnchor, leading: separator.trailingAnchor,
-      bottom: openStatusLabel.topAnchor, trailing: nil,
-      padding: .init(top: 12, left: 4, bottom: 10, right: 0)
+      bottom: nil, trailing: nil,
+      padding: .init(top: 12, left: 4, bottom: 0, right: 0)
     )
     categoriesStack.trailingAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+    categoriesBottomAnchor = categoriesStack.bottomAnchor.constraint(equalTo: openStatusLabel.topAnchor, constant: -10)
+    categoriesBottomAnchor.isActive = true
+    categoriesBottomAnchor.identifier = "$Categories Buttom Anchor$"
     
     openStatusLabel.anchor(
-      top: categoriesStack.bottomAnchor, leading: nameLabel.leadingAnchor,
+      top: nil, leading: nameLabel.leadingAnchor,
       bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
-      padding: .init(top: 10, left: 0, bottom: 12, right: 16)
+      padding: .init(top: 0, left: 0, bottom: 12, right: 16)
     )
+    openStatusTopAnchor = openStatusLabel.topAnchor.constraint(equalTo: categoriesStack.bottomAnchor, constant: 10)
+    openStatusTopAnchor.isActive = true
+    openStatusTopAnchor.identifier = "$Open Status Top Anchor$"
   }
 }
