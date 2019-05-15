@@ -21,7 +21,9 @@ class DetailHeaderView: UIView {
       if detailHeader.categories.count > 1 {
         category2.isHidden = false
         category2.label.text = detailHeader.categories[1].title
-      } else if detailHeader.categories.count > 2 {
+      }
+      
+      if detailHeader.categories.count > 2 {
         category3.isHidden = false
         category3.label.text = detailHeader.categories[2].title
       }
