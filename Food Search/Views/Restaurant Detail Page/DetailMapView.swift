@@ -14,7 +14,7 @@ class DetailMapView: UIView {
     didSet {
       let coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
       let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-      mapView.region = region
+      mapView.setRegion(region, animated: true)
       
       let annotation = MKPointAnnotation()
       annotation.coordinate = coordinate
