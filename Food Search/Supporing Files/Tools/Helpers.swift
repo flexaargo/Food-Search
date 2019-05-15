@@ -31,6 +31,13 @@ public func stackH(_ views: UIView..., spacing: CGFloat = 0,
   return stackView
 }
 
+public func stackV(_ views: UIView..., spacing: CGFloat = 0,
+                   distribution: UIStackView.Distribution = .fillEqually) -> UIStackView {
+  let stackView = stack(views: views, spacing: spacing, distribution: distribution)
+  stackView.axis = .vertical
+  return stackView
+}
+
 class PaddedTextField: UITextField {
   var padding: UIEdgeInsets!
   

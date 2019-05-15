@@ -26,9 +26,13 @@ class DetailScrollView: UIScrollView {
     return DetailMapView(frame: .zero)
   }()
   
+  lazy var reviewsView: DetailReviewsView = {
+    return DetailReviewsView(frame: .zero)
+  }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
-    contentSize = CGSize(width: frame.width, height: 1000)
+//    contentSize = CGSize(width: frame.width, height: 1000)
     delaysContentTouches = false
     setupSubviews()
   }
@@ -43,6 +47,7 @@ private extension DetailScrollView {
     addSubview(imageView)
     addSubview(headerView)
     addSubview(mapView)
+    addSubview(reviewsView)
     
     imageView.anchor(
       top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
@@ -57,7 +62,12 @@ private extension DetailScrollView {
     
     mapView.anchor(
       top: headerView.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
-      bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor
+      bottom: reviewsView.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor
+    )
+    
+    reviewsView.anchor(
+      top: mapView.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
+      bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor
     )
   }
 }

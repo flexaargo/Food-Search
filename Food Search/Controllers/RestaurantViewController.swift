@@ -12,7 +12,8 @@ import SDWebImage
 
 class RestaurantViewController: UIViewController {
   
-  private var restaurant: YRestaurantDetail!
+  private var restaurant: YRestaurantDetail?
+//  private var reviews: YRestaurantReviews?
   private var request: AnyObject?
   
   lazy var scrollView = DetailScrollView()
@@ -25,6 +26,9 @@ class RestaurantViewController: UIViewController {
   init(restaurantId: String, name: String) {
     super.init(nibName: nil, bundle: nil)
     title = name
+    scrollView.mapView.mapView.delegate = self
+    scrollView.reviewsView.reviewsCollectionView.delegate = self
+    scrollView.reviewsView.reviewsCollectionView.dataSource = self
     fetchRestaurant(withId: restaurantId)
   }
   
@@ -62,24 +66,24 @@ private extension RestaurantViewController {
       print(restaurant.name)
       DispatchQueue.main.async {
         self?.assignValues()
+        self?.scrollView.reviewsView.reviewsCollectionView.reloadData()
       }
     }
   }
   
   func assignValues() {
     scrollView.headerView.detailHeader = DetailHeader(
-      name: restaurant.name,
-      reviewCount: restaurant.reviewCount,
-      rating: restaurant.rating,
-      price: restaurant.price,
-      categories: restaurant.categories,
-      hours: restaurant.hours
+      name: restaurant!.name,
+      reviewCount: restaurant!.reviewCount,
+      rating: restaurant!.rating,
+      price: restaurant!.price,
+      categories: restaurant!.categories,
+      hours: restaurant!.hours
     )
     
-    scrollView.mapView.location = restaurant.coordinates
-    scrollView.mapView.mapView.delegate = self
+    scrollView.mapView.location = restaurant!.coordinates
     
-    scrollView.imageView.sd_setImage(with: URL(string: restaurant.imageURL)!, completed: nil)
+    scrollView.imageView.sd_setImage(with: URL(string: restaurant!.imageURL)!, completed: nil)
   }
 }
 
@@ -110,5 +114,38 @@ extension RestaurantViewController: MKMapViewDelegate {
     annotationView!.centerOffset = .init(x: 0, y: -annotationView!.frame.height/2)
     
     return annotationView
+  }
+}
+
+extension RestaurantViewController: UICollectionViewDelegate {
+  
+}
+
+extension RestaurantViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    guard let reviews = reviews else {
+      return 0
+    }
+    return 3
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.reuseIdentifier, for: indexPath) as! ReviewCell
+    
+    return cell
+  }
+}
+
+extension RestaurantViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return .init(width: 240, height: 210)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 12
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return .init(top: 8, left: 16, bottom: 8, right: 16)
   }
 }
