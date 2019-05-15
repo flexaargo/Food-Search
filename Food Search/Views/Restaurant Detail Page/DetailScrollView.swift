@@ -10,6 +10,12 @@ import UIKit
 
 class DetailScrollView: UIScrollView {
   
+  lazy var imageView: UIImageView = {
+    let image = UIImageView(image: nil)
+    image.backgroundColor = .lightGray
+    return image
+  }()
+  
   lazy var headerView: DetailHeaderView = {
     return DetailHeaderView(frame: .zero)
   }()
@@ -32,11 +38,18 @@ class DetailScrollView: UIScrollView {
 
 private extension DetailScrollView {
   func setupSubviews() {
+    addSubview(imageView)
     addSubview(headerView)
     addSubview(mapView)
     
-    headerView.anchor(
+    imageView.anchor(
       top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
+      bottom: headerView.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor
+    )
+    imageView.constrainHeight(constant: 225)
+    
+    headerView.anchor(
+      top: imageView.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
       bottom: mapView.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor
     )
     
