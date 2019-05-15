@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class RestaurantViewController: UIViewController {
   
@@ -74,5 +75,36 @@ private extension RestaurantViewController {
     )
     
     scrollView.mapView.location = restaurant.coordinates
+    scrollView.mapView.mapView.delegate = self
+  }
+}
+
+extension RestaurantViewController: MKMapViewDelegate {
+  func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+    for view in views {
+      view.isEnabled = false
+    }
+  }
+  
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    if !(annotation is MKPointAnnotation) {
+      return nil
+    }
+    
+    let annotationIdentifier = "pin"
+    var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
+    
+    if annotationView == nil {
+      annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+      annotationView!.canShowCallout = true
+    } else {
+      annotationView!.annotation = annotation
+    }
+    
+    let pinImage = UIImage(named: "pin.png")
+    annotationView!.image = pinImage
+    annotationView!.centerOffset = .init(x: 0, y: -annotationView!.frame.height/2)
+    
+    return annotationView
   }
 }

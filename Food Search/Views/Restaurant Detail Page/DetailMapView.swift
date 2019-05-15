@@ -12,8 +12,13 @@ import MapKit
 class DetailMapView: UIView {
   var location: Coordinates! {
     didSet {
-      let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude), latitudinalMeters: 1000, longitudinalMeters: 1000)
+      let coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+      let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
       mapView.region = region
+      
+      let annotation = MKPointAnnotation()
+      annotation.coordinate = coordinate
+      mapView.addAnnotation(annotation)
     }
   }
   
