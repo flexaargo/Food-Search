@@ -18,10 +18,14 @@ class RestaurantViewController: UIViewController {
   private var reviewReqiest: AnyObject?
   
   lazy var scrollView = DetailScrollView()
+  let loadingBackground = UIView()
+  let shimmerView = DetailLoadingView(color: .loadingShimmer)
+  let loadView = DetailLoadingView(color: .loadingColor)
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
+    setupLoadingAnim()
   }
   
   init(restaurantId: String, name: String) {
@@ -30,8 +34,22 @@ class RestaurantViewController: UIViewController {
     scrollView.mapView.mapView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.dataSource = self
-    fetchRestaurant(withId: restaurantId)
-    fetchRestaurantReviews(withId: restaurantId)
+    let dispatchGroup = DispatchGroup()
+    dispatchGroup.enter()
+    fetchRestaurant(withId: restaurantId) {
+      dispatchGroup.leave()
+    }
+    dispatchGroup.enter()
+    fetchRestaurantReviews(withId: restaurantId) {
+      dispatchGroup.leave()
+    }
+    dispatchGroup.notify(queue: .main) {
+      print("Finished fetching all data")
+      self.scrollView.isHidden = false
+      self.shimmerView.isHidden = true
+      self.loadView.isHidden = true
+      self.loadingBackground.isHidden = true
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -47,6 +65,7 @@ private extension RestaurantViewController {
     
     // MARK: - Setup subviews
     view.addSubview(scrollView)
+    scrollView.isHidden = true
     
     scrollView.anchor(
       top: view.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor,
@@ -54,7 +73,36 @@ private extension RestaurantViewController {
     )
   }
   
-  func fetchRestaurant(withId id: String) {
+  func setupLoadingAnim() {
+    loadingBackground.backgroundColor = .white
+    view.addSubview(loadingBackground)
+    loadingBackground.fillSuperview()
+    view.addSubview(loadView)
+    loadView.fillSuperview()
+    view.addSubview(shimmerView)
+    shimmerView.fillSuperview()
+    
+    view.layoutIfNeeded()
+    
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor, UIColor.clear.cgColor]
+    gradientLayer.locations = [0, 0.5, 1]
+    gradientLayer.frame = .init(x: 0, y: 0, width: shimmerView.frame.width*4, height: shimmerView.frame.height*0.5)
+    
+    let angle = -60 * CGFloat.pi / 180
+    gradientLayer.transform = CATransform3DMakeRotation(angle, 0, 0, 1)
+    
+    shimmerView.layer.mask = gradientLayer
+    
+    let animation = CABasicAnimation(keyPath: "transform.translation.x")
+    animation.duration = 3
+    animation.fromValue = -view.frame.width * 4
+    animation.toValue = view.frame.width * 6
+    animation.repeatCount = Float.infinity
+    gradientLayer.add(animation, forKey: "")
+  }
+  
+  func fetchRestaurant(withId id: String, completion: @escaping () -> Void) {
     var restaurantDetailResource = RestaurantDetailResource()
     restaurantDetailResource.id = id
     let restaurantDetailsRequest = YelpApiRequest(resource: restaurantDetailResource)
@@ -69,10 +117,11 @@ private extension RestaurantViewController {
       DispatchQueue.main.async {
         self?.assignValues()
       }
+      completion()
     }
   }
   
-  func fetchRestaurantReviews(withId id: String) {
+  func fetchRestaurantReviews(withId id: String, completion: @escaping () -> Void) {
     var reviewsResource = ReviewsResource()
     reviewsResource.id = id
     let reviewsRequest = YelpApiRequest(resource: reviewsResource)
@@ -86,6 +135,7 @@ private extension RestaurantViewController {
       DispatchQueue.main.async {
         self?.scrollView.reviewsView.reviewsCollectionView.reloadData()
       }
+      completion()
     }
   }
   

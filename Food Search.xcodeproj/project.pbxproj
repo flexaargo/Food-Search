@@ -36,6 +36,7 @@
 		D0D70849228A1BFE00B919AD /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D70848228A1BFE00B919AD /* categories.json */; };
 		D0D7084B228A264400B919AD /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084A228A264400B919AD /* Categories.swift */; };
 		D0D7084D228A3A6B00B919AD /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084C228A3A6B00B919AD /* Price.swift */; };
+		D0F1FECD228CE22B008AC3E7 /* DetailLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F1FECC228CE22B008AC3E7 /* DetailLoadingView.swift */; };
 		F8C67715A6A40E07DD1EC928 /* Pods_Food_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583DC875069B518D2BB65237 /* Pods_Food_Search.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		D0D70848228A1BFE00B919AD /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
 		D0D7084A228A264400B919AD /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		D0D7084C228A3A6B00B919AD /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		D0F1FECC228CE22B008AC3E7 /* DetailLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				D0C7DE6D228B63D300552B58 /* DetailMapView.swift */,
 				D0B7722A228BBBAB00315B0D /* DetailReviewsView.swift */,
 				D0B7722C228BBD5200315B0D /* ReviewCell.swift */,
+				D0F1FECC228CE22B008AC3E7 /* DetailLoadingView.swift */,
 			);
 			path = "Restaurant Detail Page";
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				D042368722859F38005C5FAE /* DiscoverSearchView.swift in Sources */,
 				D042368D22862D66005C5FAE /* RestaurantCell.swift in Sources */,
 				D0423678228580BC005C5FAE /* FavoritesViewController.swift in Sources */,
+				D0F1FECD228CE22B008AC3E7 /* DetailLoadingView.swift in Sources */,
 				D02ECD72228A693900F89F28 /* DetailScrollView.swift in Sources */,
 				D042365922857942005C5FAE /* AppDelegate.swift in Sources */,
 				D0B7722D228BBD5200315B0D /* ReviewCell.swift in Sources */,
