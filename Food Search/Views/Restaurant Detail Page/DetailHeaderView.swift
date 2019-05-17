@@ -96,6 +96,51 @@ class DetailHeaderView: UIView {
       }
       starsImageName += ".png"
       starsImage.image = UIImage(named: starsImageName)
+      
+      let openStatusText = NSMutableAttributedString()
+      let today = getCurrentYelpDay()
+      var todaysHours: [Hours] = []
+      
+      for hours in detailHeader.hours {
+        if hours.day == today {
+          todaysHours.append(hours)
+        }
+      }
+      
+      let currentTime = Calendar.current.component(.hour, from: Date()) * 100 + Calendar.current.component(.minute, from: Date())
+      if !detailHeader.isOpenNow {
+//        print("Closed")
+        openStatusText.append(NSAttributedString(string: "Closed ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.primaryRed]))
+        for hours in todaysHours {
+          let timeFormatter = DateFormatter()
+          timeFormatter.dateFormat = "HHmm"
+          let openingTimeDate = timeFormatter.date(from: hours.start)
+          let closingTimeDate = timeFormatter.date(from: hours.end)
+          timeFormatter.dateFormat = "h:mm a"
+          let openingTime = timeFormatter.string(from: openingTimeDate!)
+          let closingTime = timeFormatter.string(from: closingTimeDate!)
+          print("\(openingTime) - \(closingTime)")
+          openStatusText.append(NSAttributedString(string: "\(openingTime) - \(closingTime)"))
+        }
+      } else {
+//        print("Open")
+        openStatusText.append(NSAttributedString(string: "Open ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textGreen]))
+        for hours in todaysHours {
+          var end = hours.end == "0000" ? 2400 : Int(hours.end)!
+          if hours.isOvernight {
+            end = 2400 + Int(hours.end)!
+          }
+          if currentTime < end && currentTime >= Int(hours.start)!{
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HHmm"
+            let closingTimeDate = timeFormatter.date(from: hours.end)
+            timeFormatter.dateFormat = "h:mm a"
+            openStatusText.append(NSAttributedString(string: "until \(timeFormatter.string(from: closingTimeDate!))"))
+            break
+          }
+        }
+      }
+      openStatusLabel.attributedText = openStatusText
     }
   }
   
@@ -156,7 +201,7 @@ class DetailHeaderView: UIView {
     let label = UILabel(
       text: "Open until 10:30 PM",
       font: .systemFont(ofSize: 12, weight: .regular),
-      textColor: .textGreen
+      textColor: .textLight
     )
     return label
   }()

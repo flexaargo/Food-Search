@@ -165,3 +165,17 @@ class ColorView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 }
+
+func getCurrentYelpDay() -> Int {
+  let today = Calendar.current.component(.weekday, from: Date())
+  switch today {
+  case 1: return 6
+  case 2: return 0
+  case 3: return 1
+  case 4: return 2
+  case 5: return 3
+  case 6: return 4
+  case 7: return 5
+  default: return -1
+  }
+}

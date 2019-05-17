@@ -15,4 +15,5 @@ struct DetailHeader {
   var price: String?
   var categories: [Category]
   var hours: [Hours]
+  var isOpenNow: Bool
 }

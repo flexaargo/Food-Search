@@ -146,7 +146,8 @@ private extension RestaurantViewController {
       rating: restaurant!.rating,
       price: restaurant!.price,
       categories: restaurant!.categories,
-      hours: restaurant!.hours
+      hours: restaurant!.hours,
+      isOpenNow: restaurant!.isOpenNow
     )
     
     scrollView.mapView.location = restaurant!.coordinates

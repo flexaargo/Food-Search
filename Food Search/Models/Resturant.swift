@@ -65,6 +65,7 @@ struct YRestaurantDetail {
   let location: Location
   let photoURLs: [String]
   let hours: [Hours]
+  let isOpenNow: Bool
   var distance: Double?
 }
 
@@ -90,6 +91,7 @@ extension YRestaurantDetail: Decodable {
     enum HoursKeys: String, CodingKey {
       // Nested array object
       case openHours = "open"
+      case isOpenNow = "is_open_now"
       enum OpenHoursKeys: String, CodingKey {
         case hours
       }
@@ -118,6 +120,7 @@ extension YRestaurantDetail: Decodable {
     // Decodes the nested objects in hours:[{open:[{},{},...]}]
     var hoursContainer = try container.nestedUnkeyedContainer(forKey: .hours)
     let openHoursContainer = try hoursContainer.nestedContainer(keyedBy: CodingKeys.HoursKeys.self)
+    self.isOpenNow = try openHoursContainer.decode(Bool.self, forKey: .isOpenNow)
     hoursContainer = try openHoursContainer.nestedUnkeyedContainer(forKey: .openHours)
     var hours: [Hours] = []
     while !hoursContainer.isAtEnd {
