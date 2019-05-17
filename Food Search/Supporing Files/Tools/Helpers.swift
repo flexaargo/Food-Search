@@ -31,6 +31,13 @@ public func stackH(_ views: UIView..., spacing: CGFloat = 0,
   return stackView
 }
 
+public func stackV(_ views: UIView..., spacing: CGFloat = 0,
+                   distribution: UIStackView.Distribution = .fillEqually) -> UIStackView {
+  let stackView = stack(views: views, spacing: spacing, distribution: distribution)
+  stackView.axis = .vertical
+  return stackView
+}
+
 class PaddedTextField: UITextField {
   var padding: UIEdgeInsets!
   
@@ -119,5 +126,56 @@ extension UIViewController {
   
   @objc func dismissKeyboard() {
     view.endEditing(true)
+  }
+}
+
+class CategoryView: UIView {
+  let label: UILabel = {
+    let label = UILabel(
+      font: .systemFont(ofSize: 12, weight: .light),
+      textColor: .white
+    )
+    return label
+  }()
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    backgroundColor = .primaryRed
+    addSubview(label)
+    layer.cornerRadius = 9
+    label.anchor(
+      top: topAnchor, leading: leadingAnchor,
+      bottom: bottomAnchor, trailing: trailingAnchor,
+      padding: .init(top: 2, left: 6, bottom: 2, right: 6)
+    )
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
+class ColorView: UIView {
+  init(_ color: UIColor) {
+    super.init(frame: .zero)
+    backgroundColor = color
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
+func getCurrentYelpDay() -> Int {
+  let today = Calendar.current.component(.weekday, from: Date())
+  switch today {
+  case 1: return 6
+  case 2: return 0
+  case 3: return 1
+  case 4: return 2
+  case 5: return 3
+  case 6: return 4
+  case 7: return 5
+  default: return -1
   }
 }

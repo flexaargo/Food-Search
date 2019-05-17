@@ -55,7 +55,7 @@ struct YRestaurantDetail {
   let imageURL: String
   let isClosed: Bool
   let url: String
-  let price: String
+  let price: String?
   let phone: String
   let displayPhone: String
   let categories: [Category]
@@ -65,6 +65,7 @@ struct YRestaurantDetail {
   let location: Location
   let photoURLs: [String]
   let hours: [Hours]
+  let isOpenNow: Bool
   var distance: Double?
 }
 
@@ -90,6 +91,7 @@ extension YRestaurantDetail: Decodable {
     enum HoursKeys: String, CodingKey {
       // Nested array object
       case openHours = "open"
+      case isOpenNow = "is_open_now"
       enum OpenHoursKeys: String, CodingKey {
         case hours
       }
@@ -105,7 +107,7 @@ extension YRestaurantDetail: Decodable {
     self.imageURL = try container.decode(String.self, forKey: .imageURL)
     self.isClosed = try container.decode(Bool.self, forKey: .isClosed)
     self.url = try container.decode(String.self, forKey: .url)
-    self.price = try container.decode(String.self, forKey: .price)
+    self.price = try container.decodeIfPresent(String.self, forKey: .price)
     self.phone = try container.decode(String.self, forKey: .phone)
     self.displayPhone = try container.decode(String.self, forKey: .displayPhone)
     self.categories = try container.decode([Category].self, forKey: .categories)
@@ -118,6 +120,7 @@ extension YRestaurantDetail: Decodable {
     // Decodes the nested objects in hours:[{open:[{},{},...]}]
     var hoursContainer = try container.nestedUnkeyedContainer(forKey: .hours)
     let openHoursContainer = try hoursContainer.nestedContainer(keyedBy: CodingKeys.HoursKeys.self)
+    self.isOpenNow = try openHoursContainer.decode(Bool.self, forKey: .isOpenNow)
     hoursContainer = try openHoursContainer.nestedUnkeyedContainer(forKey: .openHours)
     var hours: [Hours] = []
     while !hoursContainer.isAtEnd {
@@ -125,6 +128,52 @@ extension YRestaurantDetail: Decodable {
       hours.append(openHours)
     }
     self.hours = hours
+  }
+}
+
+struct YRestaurantReviews {
+  let reviews: [YRestaurantReview]
+}
+
+extension YRestaurantReviews: Decodable {
+  enum CodingKeys: String, CodingKey {
+    case reviews
+  }
+}
+
+struct YRestaurantReview {
+  let id: String
+  let url: String
+  let text: String
+  let rating: Double
+  let timeCreated: String
+  let user: YUser
+}
+
+extension YRestaurantReview: Decodable {
+  enum CodingKeys: String, CodingKey {
+    case id
+    case url
+    case text
+    case rating
+    case timeCreated = "time_created"
+    case user
+  }
+}
+
+struct YUser {
+  let id: String
+  let profileURL: String
+  let imageURL: String
+  let name: String
+}
+
+extension YUser: Decodable {
+  enum CodingKeys: String, CodingKey {
+    case id
+    case profileURL = "profile_url"
+    case imageURL = "image_url"
+    case name
   }
 }
 

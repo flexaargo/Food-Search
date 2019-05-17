@@ -18,5 +18,6 @@ class BaseNavigationController: UINavigationController {
     navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     navigationBar.isTranslucent = false
     navigationBar.isOpaque = true
+    view.backgroundColor = .white
   }
 }

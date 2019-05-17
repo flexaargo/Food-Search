@@ -143,7 +143,7 @@ private extension RestaurantCell {
       bottom: addressLabel.topAnchor, trailing: nil,
       padding: .init(top: 6, left: 0, bottom: 6, right: 0)
     )
-    midStackView.trailingAnchor.constraint(lessThanOrEqualTo: topStackView.trailingAnchor, constant: -16)
+    midStackView.trailingAnchor.constraint(lessThanOrEqualTo: topStackView.trailingAnchor).isActive = true
     starsImage.constrainHeight(constant: 14)
     
     addressLabel.anchor(

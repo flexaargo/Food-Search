@@ -31,6 +31,7 @@ extension YelpApiResource {
       let result = try JSONDecoder().decode(Model.self, from: data)
       return result
     } catch {
+      print(error)
       return nil
     }
   }
@@ -48,11 +49,18 @@ struct RestaurantDetailResource: YelpApiResource {
   
   var id: String!
   var methodPath: String {
-    return "search/" + id
+    return "businesses/" + id
   }
   var params: [String] = []
 }
 
-public class Service {
+struct ReviewsResource: YelpApiResource {
+  typealias Model = YRestaurantReviews
+  
+  var id: String!
+  var methodPath: String {
+    return "businesses/" + id + "/reviews"
+  }
+  var params: [String] = []
   
 }

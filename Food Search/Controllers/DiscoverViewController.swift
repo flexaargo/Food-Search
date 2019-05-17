@@ -47,6 +47,7 @@ private extension DiscoverViewController {
     title = "Discover"
     view.backgroundColor = .white
     dismissKeyboardOnTap()
+    navigationItem.largeTitleDisplayMode = .always
     
     // MARK: - tableView setup
     tableView.delegate = self
@@ -103,7 +104,8 @@ private extension DiscoverViewController {
 extension DiscoverViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    let detailsVC = RestaurantViewController(/*restaurantId: restaurants[indexPath.row].id*/)
+    let restaurant = restaurants[indexPath.row]
+    let detailsVC = RestaurantViewController(restaurantId: restaurant.id, name: restaurant.name)
     navigationController?.pushViewController(detailsVC, animated: true)
   }
 }
