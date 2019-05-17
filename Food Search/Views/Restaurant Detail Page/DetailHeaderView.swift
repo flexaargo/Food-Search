@@ -120,7 +120,7 @@ class DetailHeaderView: UIView {
           let openingTime = timeFormatter.string(from: openingTimeDate!)
           let closingTime = timeFormatter.string(from: closingTimeDate!)
           print("\(openingTime) - \(closingTime)")
-          openStatusText.append(NSAttributedString(string: "\(openingTime) - \(closingTime)"))
+          openStatusText.append(NSAttributedString(string: "\(openingTime)-\(closingTime)  "))
         }
       } else {
 //        print("Open")
