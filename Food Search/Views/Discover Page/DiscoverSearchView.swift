@@ -18,6 +18,7 @@ class DiscoverSearchView: UIView {
       padding: .init(top: 6, left: 10, bottom: 6, right: 10)
     )
     textField.autocapitalizationType = .words
+    textField.returnKeyType = .done
     return textField
   }()
   
