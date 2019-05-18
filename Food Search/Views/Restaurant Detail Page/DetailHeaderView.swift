@@ -60,7 +60,7 @@ class DetailHeaderView: UIView {
           priceText.append(NSMutableAttributedString(string: "$$", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textLight]))
         } else if price.count == 3 {
           priceText.append(NSMutableAttributedString(string: "$$$", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]))
-          priceText.append(NSMutableAttributedString(string: "$$", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textLight]))
+          priceText.append(NSMutableAttributedString(string: "$", attributes: [NSAttributedString.Key.foregroundColor: UIColor.textLight]))
         } else {
           priceText.append(NSMutableAttributedString(string: "$$$$", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]))
         }

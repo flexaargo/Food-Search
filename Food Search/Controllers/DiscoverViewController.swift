@@ -56,6 +56,8 @@ private extension DiscoverViewController {
 //    tableView.rowHeight = UITableView.automaticDimension
     
     // MARK: - searchView setup
+    searchView.goBtn.addTarget(self, action: #selector(goButtonPressed), for: .touchUpInside)
+    searchView.randomizeBtn.addTarget(self, action: #selector(randomizeButtonPressed), for: .touchUpInside)
     searchView.locationField.delegate = self
     searchView.cuisineField.delegate = self
     searchView.priceField.delegate = self
@@ -99,6 +101,51 @@ private extension DiscoverViewController {
       }
     }
   }
+  
+  func searchRestaurants(category: Categories, price: Price) {
+    var searchResultsResource = SearchResultsResource()
+    searchResultsResource.params = [
+      "location=Chino%20Hills)",
+      "categories=\(category.alias)",
+      "open_now=true",
+      "price=\(price.param)"
+    ]
+    let searchResultsRequest = YelpApiRequest(resource: searchResultsResource)
+    request = searchResultsRequest
+    searchResultsRequest.load { [weak self] (searchResult) in
+      guard let restaurants = searchResult?.restaurants else {
+        return
+      }
+      self?.restaurants = restaurants
+      DispatchQueue.main.async {
+        self?.tableView.reloadData()
+      }
+    }
+  }
+  
+  @objc func goButtonPressed() {
+    guard inputsVerified() else {
+      return
+    }
+    searchRestaurants(
+      category: Categories(rawValue: searchView.cuisineField.text!)!,
+      price: Price(rawValue: searchView.priceField.text!)!
+    )
+  }
+  
+  @objc func randomizeButtonPressed() {
+    let category = Categories.allCases.randomElement()!
+    let price = Price.allCases.randomElement()!
+    
+    searchView.cuisineField.text = category.rawValue
+    searchView.priceField.text = price.rawValue
+    
+    searchRestaurants(category: category, price: price)
+  }
+  
+  func inputsVerified() -> Bool {
+    return true
+  }
 }
 
 extension DiscoverViewController: UITableViewDelegate {
@@ -135,8 +182,10 @@ extension DiscoverViewController: UIPickerViewDelegate {
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == categoryPicker {
+//      selectedCategory = Categories.allCases[row]
       searchView.cuisineField.text = Categories.allCases[row].rawValue
     } else {
+//      selectedPrice = Price.allCases[row]
       searchView.priceField.text = Price.allCases[row].rawValue
     }
     
