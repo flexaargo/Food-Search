@@ -36,6 +36,7 @@
 		D0D70849228A1BFE00B919AD /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D70848228A1BFE00B919AD /* categories.json */; };
 		D0D7084B228A264400B919AD /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084A228A264400B919AD /* Categories.swift */; };
 		D0D7084D228A3A6B00B919AD /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084C228A3A6B00B919AD /* Price.swift */; };
+		D0EDDB75229369C7007588DD /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EDDB74229369C7007588DD /* Defaults.swift */; };
 		D0F1FECD228CE22B008AC3E7 /* DetailLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F1FECC228CE22B008AC3E7 /* DetailLoadingView.swift */; };
 		F8C67715A6A40E07DD1EC928 /* Pods_Food_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583DC875069B518D2BB65237 /* Pods_Food_Search.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		D0D70848228A1BFE00B919AD /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
 		D0D7084A228A264400B919AD /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		D0D7084C228A3A6B00B919AD /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		D0EDDB74229369C7007588DD /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		D0F1FECC228CE22B008AC3E7 /* DetailLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				D0D70848228A1BFE00B919AD /* categories.json */,
+				D0EDDB74229369C7007588DD /* Defaults.swift */,
 				D0D7084C228A3A6B00B919AD /* Price.swift */,
 				D0D7084A228A264400B919AD /* Categories.swift */,
 				D042366F22857EC2005C5FAE /* Tools */,
@@ -356,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D04236742285809A005C5FAE /* DiscoverViewController.swift in Sources */,
+				D0EDDB75229369C7007588DD /* Defaults.swift in Sources */,
 				D042369922868C49005C5FAE /* ReuseIdentifying.swift in Sources */,
 				D042369422864ACA005C5FAE /* Secrets.swift in Sources */,
 				D042367A228580F2005C5FAE /* RestaurantViewController.swift in Sources */,

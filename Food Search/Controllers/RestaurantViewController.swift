@@ -12,10 +12,14 @@ import SDWebImage
 
 class RestaurantViewController: UIViewController {
   
+  private var restaurantId: String!
   private var restaurant: YRestaurantDetail?
   private var reviews: YRestaurantReviews?
   private var restaurantRequest: AnyObject?
   private var reviewReqiest: AnyObject?
+  
+  lazy var favoriteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "star_unselected"), style: .plain, target: self, action: #selector(saveRestaurant))
+  lazy var unfavoriteBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "star_selected"), style: .plain, target: self, action: #selector(unsaveRestaurant))
   
   lazy var scrollView = DetailScrollView()
   let loadingBackground = UIView()
@@ -30,6 +34,7 @@ class RestaurantViewController: UIViewController {
   
   init(restaurantId: String, name: String) {
     super.init(nibName: nil, bundle: nil)
+    self.restaurantId = restaurantId
     title = name
     scrollView.mapView.mapView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.delegate = self
@@ -62,6 +67,13 @@ private extension RestaurantViewController {
     view.backgroundColor = .white
     extendedLayoutIncludesOpaqueBars = true
     navigationItem.largeTitleDisplayMode = .never
+    
+    // MARK: - Setup navigaton
+    if Defaults.restaurantIsSaved(restaurantId) {
+      navigationItem.rightBarButtonItems = [unfavoriteBtn]
+    } else {
+      navigationItem.rightBarButtonItems = [favoriteBtn]
+    }
     
     // MARK: - Setup subviews
     view.addSubview(scrollView)
@@ -153,6 +165,18 @@ private extension RestaurantViewController {
     scrollView.mapView.location = restaurant!.coordinates
     
     scrollView.imageView.sd_setImage(with: URL(string: restaurant!.imageURL)!, completed: nil)
+  }
+  
+  @objc func saveRestaurant() {
+    print("saved")
+    navigationItem.setRightBarButtonItems([unfavoriteBtn], animated: false)
+    Defaults.save(restaurantId: restaurantId)
+  }
+  
+  @objc func unsaveRestaurant() {
+    print("unsaved")
+    navigationItem.setRightBarButtonItems([favoriteBtn], animated: false)
+    Defaults.remove(restaurantId: restaurantId)
   }
 }
 
