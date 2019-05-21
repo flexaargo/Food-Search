@@ -20,6 +20,7 @@ class FavoritesViewController: UITableViewController {
     view.backgroundColor = .white
     tableView.register(RestaurantCell.self, forCellReuseIdentifier: RestaurantCell.reuseIdentifier)
     tableView.separatorStyle = .none
+    extendedLayoutIncludesOpaqueBars = true
     
     fetchAllRestaurants()
   }
@@ -53,6 +54,9 @@ private extension FavoritesViewController {
     }
     
     dispatchGroup.notify(queue: .main) {
+      self.restaurants.sort(by: { (r1, r2) -> Bool in
+        r1.name < r2.name
+      })
       self.tableView.reloadData()
     }
   }
