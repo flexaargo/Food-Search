@@ -52,6 +52,48 @@ class RestaurantCell: UITableViewCell {
       starsImage.image = UIImage(named: starsImageName)
     }
   }
+  var restaurantDetail: YRestaurantDetail? {
+    didSet {
+      nameLabel.text = restaurantDetail!.name
+      distanctLabel.text = ""
+      reviewsLabel.text = restaurantDetail!.reviewCount.formattedReviewCount
+      var addressText = restaurantDetail!.location.address1
+      if let address2 = restaurantDetail!.location.address2 {
+        if address2 != "" {
+          addressText += ", " + address2
+        }
+      }
+      addressText += ", " + restaurantDetail!.location.city
+      addressLabel.text = addressText
+      var starsImageName = "small_"
+      switch restaurantDetail!.rating {
+      case 0:
+        starsImageName += "0"
+      case 1:
+        starsImageName += "1"
+      case 1.5:
+        starsImageName += "1_half"
+      case 2:
+        starsImageName += "2"
+      case 2.5:
+        starsImageName += "2_half"
+      case 3:
+        starsImageName += "3"
+      case 3.5:
+        starsImageName += "3_half"
+      case 4:
+        starsImageName += "4"
+      case 4.5:
+        starsImageName += "4_half"
+      case 5:
+        starsImageName += "5"
+      default:
+        starsImageName += "0"
+      }
+      starsImageName += ".png"
+      starsImage.image = UIImage(named: starsImageName)
+    }
+  }
   
   let nameLabel: UILabel = {
     let label = UILabel(
