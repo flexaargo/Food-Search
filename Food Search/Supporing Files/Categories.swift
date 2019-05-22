@@ -500,8 +500,8 @@ enum Categories: String, CaseIterable {
 //      return "russian"
 //    case .salad:
 //      return "salad"
-//    case .sandwiches:
-//      return "sandwiches"
+    case .sandwiches:
+      return "sandwiches"
 //    case .scandinavian:
 //      return "scandinavian"
 //    case .schnitzel:
