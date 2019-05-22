@@ -100,6 +100,7 @@ class RestaurantCell: UITableViewCell {
       font: .systemFont(ofSize: 19, weight: .bold),
       textColor: .black
     )
+    label.numberOfLines = 0
     return label
   }()
   
