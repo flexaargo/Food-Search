@@ -46,6 +46,7 @@ private extension FavoritesViewController {
       restaurantDetailsRequest.load { [weak self] (restaurant) in
         guard let restaurant = restaurant else {
           print("failed")
+          dispatchGroup.leave()
           return
         }
         self?.restaurants.append(restaurant)
