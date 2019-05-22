@@ -150,6 +150,7 @@ class DetailHeaderView: UIView {
       font: .systemFont(ofSize: 24, weight: .bold),
       textColor: .black
     )
+    label.numberOfLines = 0
     return label
   }()
   
