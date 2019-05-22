@@ -155,12 +155,12 @@ class RestaurantCell: UITableViewCell {
 
 private extension RestaurantCell {
   func setupSubviews() {
-    let topStackView = stack(
-      nameLabel,
-      distanctLabel,
-      spacing: 8,
-      distribution: .fill
-    )
+//    let topStackView = stack(
+//      nameLabel,
+//      distanctLabel,
+//      spacing: 8,
+//      distribution: .fill
+//    )
     
     let midStackView = stack(
       starsImage,
@@ -169,28 +169,45 @@ private extension RestaurantCell {
       distribution: .fill
     )
     
-    addSubview(topStackView)
+//    addSubview(topStackView)
+    addSubview(nameLabel)
+    addSubview(distanctLabel)
     addSubview(midStackView)
     addSubview(addressLabel)
     addSubview(separator)
     
-    topStackView.anchor(
+//    topStackView.anchor(
+//      top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
+//      bottom: midStackView.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
+//      padding: .init(top: 10, left: 16, bottom: 6, right: 16)
+//    )
+    
+    nameLabel.anchor(
       top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
-      bottom: midStackView.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
-      padding: .init(top: 10, left: 16, bottom: 6, right: 16)
+      bottom: midStackView.topAnchor, trailing: nil,
+      padding: .init(top: 10, left: 16, bottom: 6, right: 0)
     )
+    nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: distanctLabel.leadingAnchor, constant: -8).isActive = true
+    nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    
+    distanctLabel.anchor(
+      top: nameLabel.topAnchor, leading: nil,
+      bottom: nameLabel.bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
+      padding: .init(top: 0, left: 0, bottom: 0, right: 16)
+    )
+    distanctLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
     
     midStackView.anchor(
-      top: topStackView.bottomAnchor, leading: topStackView.leadingAnchor,
+      top: nameLabel.bottomAnchor, leading: nameLabel.leadingAnchor,
       bottom: addressLabel.topAnchor, trailing: nil,
       padding: .init(top: 6, left: 0, bottom: 6, right: 0)
     )
-    midStackView.trailingAnchor.constraint(lessThanOrEqualTo: topStackView.trailingAnchor).isActive = true
+    midStackView.trailingAnchor.constraint(lessThanOrEqualTo: distanctLabel.trailingAnchor).isActive = true
     starsImage.constrainHeight(constant: 14)
     
     addressLabel.anchor(
-      top: midStackView.bottomAnchor, leading: topStackView.leadingAnchor,
-      bottom: separator.topAnchor, trailing: topStackView.trailingAnchor,
+      top: midStackView.bottomAnchor, leading: nameLabel.leadingAnchor,
+      bottom: separator.topAnchor, trailing: distanctLabel.trailingAnchor,
       padding: .init(top: 6, left: 0, bottom: 10, right: 0)
     )
     
