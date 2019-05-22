@@ -36,7 +36,7 @@ enum Categories: String, CaseIterable {
 //  case brazilian = "Brazilian"
 	case breakfast_brunch = "Breakfast & Brunch"
 //  case british = "British"
-	case buffets = "Buffets"
+//  case buffets = "Buffets"
 //  case bulgarian = "Bulgarian"
 	case burgers = "Burgers"
 //  case burmese = "Burmese"
@@ -157,7 +157,7 @@ enum Categories: String, CaseIterable {
 //  case romanian = "Romanian"
 //  case rotisserie_chicken = "Rotisserie Chicken"
 //  case russian = "Russian"
-	case salad = "Salad"
+//  case salad = "Salad"
 	case sandwiches = "Sandwiches"
 //  case scandinavian = "Scandinavian"
 //  case schnitzel = "Schnitzel"
@@ -169,7 +169,7 @@ enum Categories: String, CaseIterable {
 //  case slovakian = "Slovakian"
 //  case somali = "Somali"
 //  case soulfood = "Soul Food"
-	case soup = "Soup"
+//  case soup = "Soup"
 	case southern = "Southern"
 	case spanish = "Spanish"
 //  case srilankan = "Sri Lankan"
@@ -254,8 +254,8 @@ enum Categories: String, CaseIterable {
 			return "breakfast_brunch"
 //    case .british:
 //      return "british"
-    case .buffets:
-      return "buffets"
+//    case .buffets:
+//      return "buffets"
 //    case .bulgarian:
 //      return "bulgarian"
     case .burgers:
@@ -498,10 +498,10 @@ enum Categories: String, CaseIterable {
 //      return "rotisserie_chicken"
 //    case .russian:
 //      return "russian"
-		case .salad:
-			return "salad"
-		case .sandwiches:
-			return "sandwiches"
+//    case .salad:
+//      return "salad"
+//    case .sandwiches:
+//      return "sandwiches"
 //    case .scandinavian:
 //      return "scandinavian"
 //    case .schnitzel:
@@ -522,8 +522,8 @@ enum Categories: String, CaseIterable {
 //      return "somali"
 //    case .soulfood:
 //      return "soulfood"
-		case .soup:
-			return "soup"
+//    case .soup:
+//      return "soup"
 		case .southern:
 			return "southern"
 		case .spanish:
