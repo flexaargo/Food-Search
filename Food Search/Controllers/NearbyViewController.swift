@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import MapKit
 
 class NearbyViewController: UIViewController {
   
+  let mapView = MKMapView()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Nearby"
+    title = "Map"
     view.backgroundColor = .white
+    setupSubviews()
+  }
+}
+
+private extension NearbyViewController {
+  func setupSubviews() {
+    view.addSubview(mapView)
+    
+    mapView.anchor(
+      top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor,
+      bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor
+    )
   }
 }

@@ -15,7 +15,7 @@ class TabViewController: UITabBarController {
     let discoverVC = BaseNavigationController(rootViewController: DiscoverViewController())
     discoverVC.tabBarItem = UITabBarItem(title: "Discover", image: #imageLiteral(resourceName: "stars_unselected"), tag: 0)
     let nearbyVC = BaseNavigationController(rootViewController: NearbyViewController())
-    nearbyVC.tabBarItem = UITabBarItem(title: "Nearby", image: #imageLiteral(resourceName: "map_unselected"), tag: 1)
+    nearbyVC.tabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "map_unselected"), tag: 1)
     let favoritesVC = BaseNavigationController(rootViewController: FavoritesViewController())
     favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "star_unselected"), tag: 2)
     
