@@ -86,7 +86,7 @@ class DiscoverSearchView: UIView {
   }
 }
 
-// MARK: Private methods
+// MARK: - Private methods
 private extension DiscoverSearchView {
   func setupSubviews() {
     let fieldStackView = stackH(
@@ -131,5 +131,18 @@ private extension DiscoverSearchView {
     )
     
     separator.constrainHeight(constant: 1)
+  }
+}
+
+// MARK: - Public Methods
+extension DiscoverSearchView {
+  func setLocationFieldToCurrentLocation() {
+    locationField.text = "Current Location"
+    locationField.textColor = .linkBlue
+  }
+  
+  func setLocationFieldToBackupLocation() {
+    locationField.text = Defaults.getBackupLocation()
+    locationField.textColor = .black
   }
 }
