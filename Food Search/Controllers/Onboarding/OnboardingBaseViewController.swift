@@ -69,10 +69,13 @@ class OnboardingBaseViewController: UIViewController {
     setupSubviews()
   }
   
-  init(titleText: String, detailText: String) {
+  init(titleText: String, detailText: String, image: UIImage? = nil) {
     super.init(nibName: nil, bundle: nil)
     self.titleLabel.text = titleText
     self.textView.text = detailText
+    if let image = image {
+      self.imageView.image = image
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
