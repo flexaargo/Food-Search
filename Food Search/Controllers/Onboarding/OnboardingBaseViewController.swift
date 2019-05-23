@@ -9,6 +9,10 @@
 import UIKit
 
 class OnboardingBaseViewController: UIViewController {
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
   let image: UIImageView = {
     let image = UIImageView()
     image.backgroundColor = .clear
@@ -20,6 +24,7 @@ class OnboardingBaseViewController: UIViewController {
       font: .systemFont(ofSize: 24, weight: .bold),
       textColor: .white
     )
+    label.textAlignment = .center
     return label
   }()
   
@@ -29,11 +34,13 @@ class OnboardingBaseViewController: UIViewController {
     textView.isScrollEnabled = false
     textView.textColor = .white
     textView.backgroundColor = .clear
+    textView.textAlignment = .center
     return textView
   }()
   
   let confirmBtn: UIButton = {
     let button = UIButton(
+      text: "Okay",
       font: .systemFont(ofSize: 22, weight: .regular),
       textColor: .primaryRed,
       backgroundColor: .white,
@@ -44,6 +51,7 @@ class OnboardingBaseViewController: UIViewController {
   
   let denyBtn: UIButton = {
     let button = UIButton(
+      text: "No Thanks",
       font: .systemFont(ofSize: 22, weight: .regular),
       textColor: .white,
       backgroundColor: .primaryRed,
