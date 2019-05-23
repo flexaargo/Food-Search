@@ -30,7 +30,7 @@ class OnboardingPageOne: OnboardingBaseViewController {
     )
     confirmBtn.isHidden = true
     denyBtn.isHidden = true
-    image.isHidden = true
+    imageView.isHidden = true
   }
   
   required init?(coder aDecoder: NSCoder) {

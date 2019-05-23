@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D01941A9229621F7009F9E08 /* OnboardingBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01941A8229621F7009F9E08 /* OnboardingBaseViewController.swift */; };
 		D01941AB229628E2009F9E08 /* OnboardingPageOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01941AA229628E2009F9E08 /* OnboardingPageOne.swift */; };
+		D01941AD22962CAC009F9E08 /* OnboardingPageTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01941AC22962CAC009F9E08 /* OnboardingPageTwo.swift */; };
 		D02ECD70228A639900F89F28 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ECD6F228A639900F89F28 /* DetailHeaderView.swift */; };
 		D02ECD72228A693900F89F28 /* DetailScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ECD71228A693900F89F28 /* DetailScrollView.swift */; };
 		D02ECD74228A7CBF00F89F28 /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ECD73228A7CBF00F89F28 /* RestaurantDetail.swift */; };
@@ -49,6 +50,7 @@
 		C8B9A92EB80C4626B646BFB9 /* Pods-Food Search.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food Search.debug.xcconfig"; path = "Target Support Files/Pods-Food Search/Pods-Food Search.debug.xcconfig"; sourceTree = "<group>"; };
 		D01941A8229621F7009F9E08 /* OnboardingBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingBaseViewController.swift; sourceTree = "<group>"; };
 		D01941AA229628E2009F9E08 /* OnboardingPageOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageOne.swift; sourceTree = "<group>"; };
+		D01941AC22962CAC009F9E08 /* OnboardingPageTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageTwo.swift; sourceTree = "<group>"; };
 		D02ECD6F228A639900F89F28 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		D02ECD71228A693900F89F28 /* DetailScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScrollView.swift; sourceTree = "<group>"; };
 		D02ECD73228A7CBF00F89F28 /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				D01941A8229621F7009F9E08 /* OnboardingBaseViewController.swift */,
 				D01941AA229628E2009F9E08 /* OnboardingPageOne.swift */,
+				D01941AC22962CAC009F9E08 /* OnboardingPageTwo.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				D042367A228580F2005C5FAE /* RestaurantViewController.swift in Sources */,
 				D042369222864A98005C5FAE /* Resources.swift in Sources */,
 				D02ECD70228A639900F89F28 /* DetailHeaderView.swift in Sources */,
+				D01941AD22962CAC009F9E08 /* OnboardingPageTwo.swift in Sources */,
 				D042367E228594BA005C5FAE /* BaseNavigationController.swift in Sources */,
 				D0423676228580AE005C5FAE /* NearbyViewController.swift in Sources */,
 				D042368F22862DA4005C5FAE /* Resturant.swift in Sources */,

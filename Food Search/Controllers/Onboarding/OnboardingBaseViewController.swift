@@ -13,7 +13,7 @@ class OnboardingBaseViewController: UIViewController {
     return .lightContent
   }
   
-  let image: UIImageView = {
+  let imageView: UIImageView = {
     let image = UIImageView()
     image.backgroundColor = .clear
     return image
@@ -82,7 +82,7 @@ class OnboardingBaseViewController: UIViewController {
 
 private extension OnboardingBaseViewController {
   func setupSubviews() {
-    view.addSubview(image)
+    view.addSubview(imageView)
     view.addSubview(titleLabel)
     view.addSubview(textView)
     view.addSubview(confirmBtn)
@@ -94,12 +94,12 @@ private extension OnboardingBaseViewController {
       padding: .init(top: 0, left: 16, bottom: 10, right: 16)
     )
     
-    image.anchor(
+    imageView.anchor(
       top: nil, leading: nil,
       bottom: titleLabel.topAnchor, trailing: nil,
       padding: .init(top: 0, left: 0, bottom: 53, right: 0)
     )
-    image.centerXInSuperview()
+    imageView.centerXInSuperview()
     
     textView.anchor(
       top: titleLabel.bottomAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor,
@@ -115,13 +115,15 @@ private extension OnboardingBaseViewController {
     )
     denyBtn.constrainWidth(constant: 151)
     denyBtn.constrainHeight(constant: 44)
+    denyBtn.centerXInSuperview()
     
     confirmBtn.anchor(
       top: nil, leading: nil,
       bottom: denyBtn.topAnchor, trailing: nil,
       padding: .init(top: 0, left: 0, bottom: 10, right: 0)
     )
-    confirmBtn.constrainWidth(widthAnchor: denyBtn.widthAnchor)
-    confirmBtn.constrainHeight(heightAnchor: denyBtn.heightAnchor)
+    confirmBtn.constrainWidth(constant: 151)
+    confirmBtn.constrainHeight(constant: 44)
+    confirmBtn.centerXInSuperview()
   }
 }
