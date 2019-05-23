@@ -11,6 +11,9 @@ import CoreLocation
 
 class DiscoverViewController: UIViewController {
   
+  private var category: Categories!
+  private var price: Price!
+  
   private var restaurants: [YRestaurantSimple] = []
   private var request: AnyObject?
   
@@ -23,8 +26,8 @@ class DiscoverViewController: UIViewController {
     }
     return false
   }
-  private var locationRetrieved = false
-  private var locationError = false
+  private var currentLocation: CLLocationCoordinate2D!
+  private var searchLocation: String!
   
   lazy var searchView: DiscoverSearchView = {
     return DiscoverSearchView(frame: .zero)
@@ -124,16 +127,30 @@ private extension DiscoverViewController {
     )
   }
   
-  func searchForRestaurants(withCategory category: Categories, andPrice price: Price) {
-    let category = category.alias
-    let price = price.param
+  func searchForRestaurants(useCurrentLocation: Bool = false) {
+    var otherParams: [String] = []
+    if useCurrentLocation {
+      otherParams.append(contentsOf: [
+        "latitude=\(currentLocation.latitude)",
+        "longitude=\(currentLocation.longitude)"
+      ])
+    } else {
+      otherParams.append(contentsOf: [
+        "location=\(searchLocation.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
+      ])
+    }
+    
+    let category = self.category.alias
+    let price = self.price.param
+    let radius = 17000
     var searchResultsResource = SearchResultsResource()
     searchResultsResource.params = [
-      "location=Chino%20Hills",
       "categories=\(category)",
+      "radius=\(radius)",
       "price=\(price)",
       "open_now=true"
     ]
+    searchResultsResource.params.append(contentsOf: otherParams)
     let searchResultsRequest = YelpApiRequest(resource: searchResultsResource)
     request = searchResultsRequest
     searchResultsRequest.load { [weak self] (searchResult) in
@@ -147,13 +164,24 @@ private extension DiscoverViewController {
     }
   }
   
+  func search() {
+    if searchLocation == "Current Location" {
+      locationManager.requestLocation()
+    } else {
+      searchForRestaurants()
+    }
+  }
+  
   @objc func goButtonPressed() {
     verifyInputs()
     
     let price = Price(rawValue: searchView.priceField.text!)!
     let category = Categories(rawValue: searchView.cuisineField.text!)!
     
-    searchForRestaurants(withCategory: category, andPrice: price)
+    self.price = price
+    self.category = category
+    
+    search()
   }
   
   @objc func randomizeButtonPressed() {
@@ -165,12 +193,16 @@ private extension DiscoverViewController {
     searchView.cuisineField.text = category.rawValue
     searchView.priceField.text = price.rawValue
     
-    searchForRestaurants(withCategory: category, andPrice: price)
+    self.price = price
+    self.category = category
+    
+    search()
   }
   
   func verifyInputs() {
     let locationField = searchView.locationField
     if locationField.text! == "Current Location" {
+      searchLocation = nil
       if !canUseLocation {
         searchView.setLocationFieldToBackupLocation()
       }
@@ -183,6 +215,7 @@ private extension DiscoverViewController {
         searchView.setLocationFieldToBackupLocation()
       }
     }
+    searchLocation = locationField.text
   }
 }
 
@@ -273,10 +306,12 @@ extension DiscoverViewController: UITextFieldDelegate {
 // MARK: - Location Manager Delegate Methods
 extension DiscoverViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    print(locations)
+    let loc = locations[0]
+    currentLocation = loc.coordinate
+    searchForRestaurants(useCurrentLocation: true)
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    
+    searchForRestaurants()
   }
 }
