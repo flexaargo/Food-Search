@@ -291,10 +291,31 @@ extension DiscoverViewController: UIPickerViewDataSource {
 extension DiscoverViewController: UITextFieldDelegate {
   func textFieldDidBeginEditing(_ textField: UITextField) {
     tableView.isUserInteractionEnabled = false
+    
+    if textField == searchView.locationField {
+      textField.textColor = .black
+      if textField.text == "Current Location" || textField.text == Defaults.getBackupLocation() {
+        textField.text = nil
+      }
+    }
   }
   
   func textFieldDidEndEditing(_ textField: UITextField) {
     tableView.isUserInteractionEnabled = true
+    
+    if textField == searchView.locationField {
+      textField.text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+      if textField.text == "Current Location" {
+        textField.textColor = .linkBlue
+      }
+      if textField.text!.isEmpty {
+        if canUseLocation {
+          searchView.setLocationFieldToCurrentLocation()
+        } else {
+          searchView.setLocationFieldToBackupLocation()
+        }
+      }
+    }
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {

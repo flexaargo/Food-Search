@@ -12,7 +12,7 @@ class DiscoverSearchView: UIView {
   public let locationField: UITextField = {
     let textField = PaddedTextField(
       font: .systemFont(ofSize: 18, weight: .regular),
-      placeholder: "Location",
+      placeholder: "neighborhood, city, state or zip code",
       backgroundColor: .backgroundLight,
       cornerRadius: 10,
       padding: .init(top: 6, left: 10, bottom: 6, right: 10)
