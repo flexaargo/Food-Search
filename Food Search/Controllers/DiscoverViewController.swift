@@ -40,11 +40,17 @@ class DiscoverViewController: UIViewController {
     setup()
     let currentOnboardingPage = Defaults.currentOnboardingPage()
     if currentOnboardingPage == 3 {
-      present(OnboardingPageThree(), animated: false, completion: nil)
+      let page = OnboardingPageThree()
+      page.discoverViewController = self
+      self.parent!.present(page, animated: false, completion: nil)
     } else if currentOnboardingPage == 2 {
-      present(OnboardingPageTwo(), animated: false, completion: nil)
+      let page = OnboardingPageTwo()
+      page.discoverViewController = self
+      self.parent!.present(page, animated: false, completion: nil)
     } else if currentOnboardingPage == 1 {
-      present(OnboardingPageOne(), animated: false, completion: nil)
+      let page = OnboardingPageOne()
+      page.discoverViewController = self
+      self.parent!.present(page, animated: false, completion: nil)
     } else {
       randomizeButtonPressed()
     }
@@ -138,6 +144,13 @@ private extension DiscoverViewController {
 
   func inputsVerified() -> Bool {
     return true
+  }
+}
+
+// MARK: - Public Methods
+extension DiscoverViewController {
+  func onboardingFinished() {
+    // TODO: Fill in location
   }
 }
 

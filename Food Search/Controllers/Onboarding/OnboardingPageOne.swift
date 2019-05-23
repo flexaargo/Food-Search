@@ -33,8 +33,6 @@ class OnboardingPageOne: OnboardingBaseViewController {
     confirmBtn.isHidden = true
     denyBtn.isHidden = true
     imageView.isHidden = true
-    initialVC = self
-    modalPresentationStyle = .overFullScreen
   }
   
   required init?(coder aDecoder: NSCoder) {

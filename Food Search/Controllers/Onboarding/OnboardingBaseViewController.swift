@@ -13,8 +13,8 @@ class OnboardingBaseViewController: UIViewController {
     return .lightContent
   }
   
-  var initialVC: OnboardingBaseViewController?
   var pageNumber: Int!
+  var discoverViewController: DiscoverViewController!
   
   let imageView: UIImageView = {
     let image = UIImageView()
@@ -70,21 +70,19 @@ class OnboardingBaseViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .primaryRed
     setupSubviews()
+    Defaults.setOnboardingPage(pageNumber)
   }
   
-  init(titleText: String, detailText: String, image: UIImage? = nil, pageNumber: Int? = nil) {
+  init(titleText: String, detailText: String, image: UIImage? = nil, pageNumber: Int) {
     super.init(nibName: nil, bundle: nil)
-    modalPresentationStyle = UIModalPresentationStyle.fullScreen
+    modalPresentationStyle = UIModalPresentationStyle.overFullScreen
     transitioningDelegate = self
-//    modalTransitionStyle = UIModalTransitionStyle.coverVertical
     self.titleLabel.text = titleText
     self.textView.text = detailText
     if let image = image {
       self.imageView.image = image
     }
-    if let pageNumber = pageNumber {
-      self.pageNumber = pageNumber
-    }
+    self.pageNumber = pageNumber
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -153,8 +151,7 @@ extension OnboardingBaseViewController {
   }
   
   func goToNextOnboardingScreen(next: OnboardingBaseViewController, prev: OnboardingBaseViewController) {
-    next.initialVC = initialVC
-    next.pageNumber = pageNumber + 1
+    next.discoverViewController = prev.discoverViewController
     present(next, animated: true) {
       prev.view.isHidden = true
     }

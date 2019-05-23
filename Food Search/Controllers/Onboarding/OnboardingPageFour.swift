@@ -17,13 +17,12 @@ class OnboardingPageFour: OnboardingBaseViewController {
     super.init(
       titleText: "All Done",
       detailText: "You are now all done setting up!\n\nGo search for some food!",
-      image: #imageLiteral(resourceName: "onboarding_appicon")
+      image: #imageLiteral(resourceName: "onboarding_appicon"),
+      pageNumber: 4
     )
     confirmBtn.setTitle("Let's Go", for: .normal)
     denyBtn.isHidden = true
     confirmBtn.addTarget(self, action: #selector(didPressConfirmButton), for: .touchUpInside)
-    initialVC = self
-//    modalPresentationStyle = .overFullScreen
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -33,6 +32,7 @@ class OnboardingPageFour: OnboardingBaseViewController {
 
 private extension OnboardingPageFour {
   @objc func didPressConfirmButton() {
+    discoverViewController.onboardingFinished()
     dismissOnboardingScreens()
   }
 }
