@@ -11,6 +11,7 @@
 		D01941AB229628E2009F9E08 /* OnboardingPageOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01941AA229628E2009F9E08 /* OnboardingPageOne.swift */; };
 		D01941AD22962CAC009F9E08 /* OnboardingPageTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01941AC22962CAC009F9E08 /* OnboardingPageTwo.swift */; };
 		D01941AF22962FAC009F9E08 /* OnboardingPageThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01941AE22962FAC009F9E08 /* OnboardingPageThree.swift */; };
+		D01941B122963142009F9E08 /* OnboardingPageFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01941B022963142009F9E08 /* OnboardingPageFour.swift */; };
 		D02ECD70228A639900F89F28 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ECD6F228A639900F89F28 /* DetailHeaderView.swift */; };
 		D02ECD72228A693900F89F28 /* DetailScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ECD71228A693900F89F28 /* DetailScrollView.swift */; };
 		D02ECD74228A7CBF00F89F28 /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02ECD73228A7CBF00F89F28 /* RestaurantDetail.swift */; };
@@ -53,6 +54,7 @@
 		D01941AA229628E2009F9E08 /* OnboardingPageOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageOne.swift; sourceTree = "<group>"; };
 		D01941AC22962CAC009F9E08 /* OnboardingPageTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageTwo.swift; sourceTree = "<group>"; };
 		D01941AE22962FAC009F9E08 /* OnboardingPageThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageThree.swift; sourceTree = "<group>"; };
+		D01941B022963142009F9E08 /* OnboardingPageFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageFour.swift; sourceTree = "<group>"; };
 		D02ECD6F228A639900F89F28 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		D02ECD71228A693900F89F28 /* DetailScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScrollView.swift; sourceTree = "<group>"; };
 		D02ECD73228A7CBF00F89F28 /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				D01941AA229628E2009F9E08 /* OnboardingPageOne.swift */,
 				D01941AC22962CAC009F9E08 /* OnboardingPageTwo.swift */,
 				D01941AE22962FAC009F9E08 /* OnboardingPageThree.swift */,
+				D01941B022963142009F9E08 /* OnboardingPageFour.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				D02ECD72228A693900F89F28 /* DetailScrollView.swift in Sources */,
 				D01941AB229628E2009F9E08 /* OnboardingPageOne.swift in Sources */,
 				D042365922857942005C5FAE /* AppDelegate.swift in Sources */,
+				D01941B122963142009F9E08 /* OnboardingPageFour.swift in Sources */,
 				D01941A9229621F7009F9E08 /* OnboardingBaseViewController.swift in Sources */,
 				D0B7722D228BBD5200315B0D /* ReviewCell.swift in Sources */,
 				D0C7DE6E228B63D300552B58 /* DetailMapView.swift in Sources */,
