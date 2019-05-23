@@ -38,7 +38,16 @@ class DiscoverViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
-    randomizeButtonPressed()
+    let currentOnboardingPage = Defaults.currentOnboardingPage()
+    if currentOnboardingPage == 3 {
+      present(OnboardingPageThree(), animated: false, completion: nil)
+    } else if currentOnboardingPage == 2 {
+      present(OnboardingPageTwo(), animated: false, completion: nil)
+    } else if currentOnboardingPage == 1 {
+      present(OnboardingPageOne(), animated: false, completion: nil)
+    } else {
+      randomizeButtonPressed()
+    }
   }
 }
 

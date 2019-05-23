@@ -10,6 +10,7 @@ import Foundation
 
 struct Defaults {
   static let favoritesKey = "xyz.alexfargo.foodsearch.favorites"
+  static let onboardingKey = "xyz.alexfargo.foodsearch.onboarding"
   
   static func save(restaurantId: String) {
     var favorites = getRestaurants()
@@ -35,5 +36,13 @@ struct Defaults {
     var favorites = getRestaurants()
     favorites = favorites.filter { $0 != restaurantId }
     UserDefaults.standard.set(favorites, forKey: favoritesKey)
+  }
+  
+  static func setOnboardingPage(_ page: Int) {
+    UserDefaults.standard.set(page, forKey: onboardingKey)
+  }
+  
+  static func currentOnboardingPage() -> Int {
+    return UserDefaults.standard.value(forKey: onboardingKey) as? Int ?? 1
   }
 }

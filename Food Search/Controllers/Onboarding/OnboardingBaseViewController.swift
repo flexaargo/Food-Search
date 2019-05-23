@@ -13,6 +13,9 @@ class OnboardingBaseViewController: UIViewController {
     return .lightContent
   }
   
+  var initialVC: OnboardingBaseViewController?
+  var pageNumber: Int!
+  
   let imageView: UIImageView = {
     let image = UIImageView()
     image.backgroundColor = .clear
@@ -69,12 +72,18 @@ class OnboardingBaseViewController: UIViewController {
     setupSubviews()
   }
   
-  init(titleText: String, detailText: String, image: UIImage? = nil) {
+  init(titleText: String, detailText: String, image: UIImage? = nil, pageNumber: Int? = nil) {
     super.init(nibName: nil, bundle: nil)
+    modalPresentationStyle = UIModalPresentationStyle.fullScreen
+    transitioningDelegate = self
+//    modalTransitionStyle = UIModalTransitionStyle.coverVertical
     self.titleLabel.text = titleText
     self.textView.text = detailText
     if let image = image {
       self.imageView.image = image
+    }
+    if let pageNumber = pageNumber {
+      self.pageNumber = pageNumber
     }
   }
   
@@ -128,5 +137,36 @@ private extension OnboardingBaseViewController {
     confirmBtn.constrainWidth(constant: 151)
     confirmBtn.constrainHeight(constant: 44)
     confirmBtn.centerXInSuperview()
+  }
+}
+
+extension OnboardingBaseViewController {
+  func dismissOnboardingScreens() {
+    var prevVC = self.presentingViewController
+    let current = self
+    while(prevVC?.presentingViewController != nil) {
+      prevVC = prevVC?.presentingViewController
+    }
+    current.dismiss(animated: true) {
+      prevVC?.dismiss(animated: false, completion: nil)
+    }
+  }
+  
+  func goToNextOnboardingScreen(next: OnboardingBaseViewController, prev: OnboardingBaseViewController) {
+    next.initialVC = initialVC
+    next.pageNumber = pageNumber + 1
+    present(next, animated: true) {
+      prev.view.isHidden = true
+    }
+  }
+}
+
+extension OnboardingBaseViewController: UIViewControllerTransitioningDelegate {
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return ModalPushAnimator()
+  }
+  
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    return ModalPopAnimator()
   }
 }

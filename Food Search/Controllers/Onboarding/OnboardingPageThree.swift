@@ -20,9 +20,18 @@ class OnboardingPageThree: OnboardingBaseViewController {
       image: #imageLiteral(resourceName: "onboarding_backup")
     )
     denyBtn.isHidden = true
+    confirmBtn.addTarget(self, action: #selector(didPressConfirmButton), for: .touchUpInside)
+    initialVC = self
+//    modalPresentationStyle = .overFullScreen
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+}
+
+private extension OnboardingPageThree {
+  @objc func didPressConfirmButton() {
+    goToNextOnboardingScreen(next: OnboardingPageFour(), prev: self)
   }
 }

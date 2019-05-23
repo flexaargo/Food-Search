@@ -15,6 +15,7 @@ class OnboardingPageOne: OnboardingBaseViewController {
       font: .systemFont(ofSize: 20, weight: .medium),
       textColor: .white
     )
+    button.addTarget(self, action: #selector(didPressNext), for: .touchUpInside)
     return button
   }()
   
@@ -26,11 +27,14 @@ class OnboardingPageOne: OnboardingBaseViewController {
   init() {
     super.init(
       titleText: "Welcome to Food Search",
-      detailText: "Before you can get started, there are a few things we need from you..."
+      detailText: "Before you can get started, there are a few things we need from you...",
+      pageNumber: 1
     )
     confirmBtn.isHidden = true
     denyBtn.isHidden = true
     imageView.isHidden = true
+    initialVC = self
+    modalPresentationStyle = .overFullScreen
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -47,5 +51,9 @@ private extension OnboardingPageOne {
       bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor,
       padding: .init(top: 0, left: 0, bottom: 16, right: 32)
     )
+  }
+  
+  @objc func didPressNext() {
+    goToNextOnboardingScreen(next: OnboardingPageTwo(), prev: self)
   }
 }
