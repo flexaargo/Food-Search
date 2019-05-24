@@ -12,7 +12,7 @@ class DetailScrollView: UIScrollView {
   
   lazy var imageView: UIImageView = {
     let image = UIImageView(image: nil)
-    image.backgroundColor = .lightGray
+    image.backgroundColor = .loadingColor
     image.contentMode = .scaleAspectFill
     image.clipsToBounds = true
     return image
@@ -42,6 +42,7 @@ class DetailScrollView: UIScrollView {
   }
 }
 
+// MARK: - Private Methods
 private extension DetailScrollView {
   func setupSubviews() {
     addSubview(imageView)

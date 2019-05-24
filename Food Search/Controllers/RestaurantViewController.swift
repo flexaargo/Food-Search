@@ -62,20 +62,21 @@ class RestaurantViewController: UIViewController {
   }
 }
 
+// MARK: - Private Methods
 private extension RestaurantViewController {
   func setup() {
     view.backgroundColor = .white
     extendedLayoutIncludesOpaqueBars = true
     navigationItem.largeTitleDisplayMode = .never
     
-    // MARK: - Setup navigaton
+    // MARK: Setup navigaton
     if Defaults.restaurantIsSaved(restaurantId) {
       navigationItem.rightBarButtonItems = [unfavoriteBtn]
     } else {
       navigationItem.rightBarButtonItems = [favoriteBtn]
     }
     
-    // MARK: - Setup subviews
+    // MARK: Setup subviews
     view.addSubview(scrollView)
     scrollView.isHidden = true
     
@@ -85,6 +86,7 @@ private extension RestaurantViewController {
     )
   }
   
+  // MARK: Loading Animation
   func setupLoadingAnim() {
     loadingBackground.backgroundColor = .white
     view.addSubview(loadingBackground)
@@ -180,6 +182,7 @@ private extension RestaurantViewController {
   }
 }
 
+// MARK: - Map View Delegate Methods
 extension RestaurantViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
     for view in views {
@@ -210,6 +213,7 @@ extension RestaurantViewController: MKMapViewDelegate {
   }
 }
 
+// MARK: - Collection View Data Source Methods
 extension RestaurantViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let reviews = reviews else {
@@ -235,6 +239,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
   }
 }
 
+// MARK: - Collection View Flow Layout Delegate Methods
 extension RestaurantViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return .init(width: 222, height: 210)
@@ -249,6 +254,7 @@ extension RestaurantViewController: UICollectionViewDelegateFlowLayout {
   }
 }
 
+// MARK: - Review Cell Delegate Methods
 extension RestaurantViewController: ReviewCellDelegate {
   func reviewCell(_ reviewCell: ReviewCell, linkTappedWithUrl url: URL) {
     UIApplication.shared.open(url, options: [:], completionHandler: nil)
