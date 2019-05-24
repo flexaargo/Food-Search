@@ -190,7 +190,7 @@ extension Coordinates: Decodable {
 }
 
 struct Location {
-  let address1: String
+  let address1: String?
   let address2: String?
   let address3: String?
   let city: String
