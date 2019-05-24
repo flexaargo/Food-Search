@@ -67,20 +67,20 @@ class RestaurantCell: UITableViewCell {
       distanctLabel.text = ""
       reviewsLabel.text = restaurantDetail!.reviewCount.formattedReviewCount
       var addressText = ""
-      if let address1 = restaurant!.location.address1 {
+      if let address1 = restaurantDetail!.location.address1 {
         if address1 != "" {
           addressText += address1
         }
       }
-      if let address2 = restaurant!.location.address2 {
+      if let address2 = restaurantDetail!.location.address2 {
         if address2 != "" {
           addressText += ", " + address2
         }
       }
       if addressText == "" {
-        addressText += restaurant!.location.city
+        addressText += restaurantDetail!.location.city
       } else {
-        addressText += ", " + restaurant!.location.city
+        addressText += ", " + restaurantDetail!.location.city
       }
       addressLabel.text = addressText
       var starsImageName = "small_"
