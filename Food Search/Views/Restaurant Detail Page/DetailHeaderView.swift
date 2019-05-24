@@ -154,6 +154,12 @@ class DetailHeaderView: UIView {
     return label
   }()
   
+  let restaurantPageBtn: UIButton = {
+    let button = UIButton()
+    button.setImage(UIImage(named: "yelp_burst.png"), for: .normal)
+    return button
+  }()
+  
   let starsImage: UIImageView = {
     let image = UIImageView(image: UIImage(named: "regular_5.png"))
     return image
@@ -234,6 +240,7 @@ private extension DetailHeaderView {
     
     
     addSubview(nameLabel)
+    addSubview(restaurantPageBtn)
     addSubview(reviewsStack)
     addSubview(priceLabel)
     addSubview(separator)
@@ -242,9 +249,18 @@ private extension DetailHeaderView {
     
     nameLabel.anchor(
       top: topAnchor, leading: safeAreaLayoutGuide.leadingAnchor,
-      bottom: reviewsStack.topAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
-      padding: .init(top: 12, left: 16, bottom: 8, right: 16)
+      bottom: reviewsStack.topAnchor, trailing: restaurantPageBtn.leadingAnchor,
+      padding: .init(top: 12, left: 16, bottom: 8, right: 6)
     )
+    
+    restaurantPageBtn.anchor(
+      top: nameLabel.topAnchor, leading: nameLabel.trailingAnchor,
+      bottom: nil, trailing: nil,
+      padding: .init(top: 0, left: 6, bottom: 0, right: 0)
+    )
+    restaurantPageBtn.trailingAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+    restaurantPageBtn.constrainWidth(constant: 29)
+    restaurantPageBtn.constrainHeightToWidth()
     
     reviewsStack.anchor(
       top: nameLabel.bottomAnchor, leading: nameLabel.leadingAnchor,

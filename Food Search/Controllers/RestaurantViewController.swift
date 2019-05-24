@@ -36,6 +36,7 @@ class RestaurantViewController: UIViewController {
     super.init(nibName: nil, bundle: nil)
     self.restaurantId = restaurantId
     title = name
+    scrollView.headerView.restaurantPageBtn.addTarget(self, action: #selector(didPressYelpButton), for: .touchUpInside)
     scrollView.mapView.mapView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.dataSource = self
@@ -179,6 +180,10 @@ private extension RestaurantViewController {
     print("unsaved")
     navigationItem.setRightBarButtonItems([favoriteBtn], animated: false)
     Defaults.remove(restaurantId: restaurantId)
+  }
+  
+  @objc func didPressYelpButton() {
+    UIApplication.shared.open(URL(string: restaurant!.url)!, options: [:], completionHandler: nil)
   }
 }
 
