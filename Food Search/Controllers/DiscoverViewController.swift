@@ -11,6 +11,8 @@ import CoreLocation
 
 class DiscoverViewController: UIViewController {
   
+  private var nearbyVC: NearbyViewController
+  
   private var category: Categories!
   private var price: Price!
   
@@ -50,6 +52,15 @@ class DiscoverViewController: UIViewController {
     picker.dataSource = self
     return picker
   }()
+  
+  init(nearbyVC: NearbyViewController) {
+    self.nearbyVC = nearbyVC
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -160,6 +171,7 @@ private extension DiscoverViewController {
       self?.restaurants = restaurants
       DispatchQueue.main.async {
         self?.tableView.reloadData()
+        self?.nearbyVC.updateRestaurants(restaurants: restaurants)
       }
     }
   }

@@ -12,14 +12,17 @@ class TabViewController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let discoverVC = BaseNavigationController(rootViewController: DiscoverViewController())
-    discoverVC.tabBarItem = UITabBarItem(title: "Discover", image: #imageLiteral(resourceName: "stars_unselected"), tag: 0)
-    let nearbyVC = BaseNavigationController(rootViewController: NearbyViewController())
-    nearbyVC.tabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "map_unselected"), tag: 1)
-    let favoritesVC = BaseNavigationController(rootViewController: FavoritesViewController())
-    favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "star_unselected"), tag: 2)
+    let nearbyVC = NearbyViewController()
+    let discoverVC = DiscoverViewController(nearbyVC: nearbyVC)
     
-    viewControllers = [discoverVC, nearbyVC, favoritesVC]
+    let discoverNavVC = BaseNavigationController(rootViewController: discoverVC)
+    discoverNavVC.tabBarItem = UITabBarItem(title: "Discover", image: #imageLiteral(resourceName: "stars_unselected"), tag: 0)
+    let nearbyNavVC = BaseNavigationController(rootViewController: nearbyVC)
+    nearbyNavVC.tabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "map_unselected"), tag: 1)
+    let favoritesNavVC = BaseNavigationController(rootViewController: FavoritesViewController())
+    favoritesNavVC.tabBarItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "star_unselected"), tag: 2)
+    
+    viewControllers = [discoverNavVC, nearbyNavVC, favoritesNavVC]
     tabBar.tintColor = .red
   }
 }
