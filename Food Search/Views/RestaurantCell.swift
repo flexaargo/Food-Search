@@ -13,103 +13,19 @@ class RestaurantCell: UITableViewCell {
   var restaurant: YRestaurantSimple? {
     didSet {
       nameLabel.text = restaurant!.name
-      distanctLabel.text = convertToMiles(meters: restaurant!.distance).formattedMiles
+      distanceLabel.text = convertToMiles(meters: restaurant!.distance).formattedMiles
       reviewsLabel.text = restaurant!.reviewCount.formattedReviewCount
-      var addressText = ""
-      if let address1 = restaurant!.location.address1 {
-        if address1 != "" {
-          addressText += address1
-        }
-      }
-      if let address2 = restaurant!.location.address2 {
-        if address2 != "" {
-          addressText += ", " + address2
-        }
-      }
-      if addressText == "" {
-        addressText += restaurant!.location.city
-      } else {
-        addressText += ", " + restaurant!.location.city
-      }
-      addressLabel.text = addressText
-      var starsImageName = "small_"
-      switch restaurant!.rating {
-      case 0:
-        starsImageName += "0"
-      case 1:
-        starsImageName += "1"
-      case 1.5:
-        starsImageName += "1_half"
-      case 2:
-        starsImageName += "2"
-      case 2.5:
-        starsImageName += "2_half"
-      case 3:
-        starsImageName += "3"
-      case 3.5:
-        starsImageName += "3_half"
-      case 4:
-        starsImageName += "4"
-      case 4.5:
-        starsImageName += "4_half"
-      case 5:
-        starsImageName += "5"
-      default:
-        starsImageName += "0"
-      }
-      starsImageName += ".png"
-      starsImage.image = UIImage(named: starsImageName)
+      setAddressLabel(using: restaurant!.location)
+      setStarsImage(using: restaurant!.rating)
     }
   }
   var restaurantDetail: YRestaurantDetail? {
     didSet {
       nameLabel.text = restaurantDetail!.name
-      distanctLabel.text = ""
+      distanceLabel.text = ""
       reviewsLabel.text = restaurantDetail!.reviewCount.formattedReviewCount
-      var addressText = ""
-      if let address1 = restaurantDetail!.location.address1 {
-        if address1 != "" {
-          addressText += address1
-        }
-      }
-      if let address2 = restaurantDetail!.location.address2 {
-        if address2 != "" {
-          addressText += ", " + address2
-        }
-      }
-      if addressText == "" {
-        addressText += restaurantDetail!.location.city
-      } else {
-        addressText += ", " + restaurantDetail!.location.city
-      }
-      addressLabel.text = addressText
-      var starsImageName = "small_"
-      switch restaurantDetail!.rating {
-      case 0:
-        starsImageName += "0"
-      case 1:
-        starsImageName += "1"
-      case 1.5:
-        starsImageName += "1_half"
-      case 2:
-        starsImageName += "2"
-      case 2.5:
-        starsImageName += "2_half"
-      case 3:
-        starsImageName += "3"
-      case 3.5:
-        starsImageName += "3_half"
-      case 4:
-        starsImageName += "4"
-      case 4.5:
-        starsImageName += "4_half"
-      case 5:
-        starsImageName += "5"
-      default:
-        starsImageName += "0"
-      }
-      starsImageName += ".png"
-      starsImage.image = UIImage(named: starsImageName)
+      setAddressLabel(using: restaurantDetail!.location)
+      setStarsImage(using: restaurantDetail!.rating)
     }
   }
   
@@ -122,7 +38,7 @@ class RestaurantCell: UITableViewCell {
     return label
   }()
   
-  let distanctLabel: UILabel = {
+  let distanceLabel: UILabel = {
     let label = UILabel(
       font: .systemFont(ofSize: 14, weight: .regular),
       textColor: .textLight
@@ -173,6 +89,7 @@ class RestaurantCell: UITableViewCell {
 }
 
 private extension RestaurantCell {
+  // MARK: - Setup
   func setupSubviews() {
 //    let topStackView = stack(
 //      nameLabel,
@@ -190,7 +107,7 @@ private extension RestaurantCell {
     
 //    addSubview(topStackView)
     addSubview(nameLabel)
-    addSubview(distanctLabel)
+    addSubview(distanceLabel)
     addSubview(midStackView)
     addSubview(addressLabel)
     addSubview(separator)
@@ -206,27 +123,27 @@ private extension RestaurantCell {
       bottom: midStackView.topAnchor, trailing: nil,
       padding: .init(top: 10, left: 16, bottom: 6, right: 0)
     )
-    nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: distanctLabel.leadingAnchor, constant: -8).isActive = true
+    nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: distanceLabel.leadingAnchor, constant: -8).isActive = true
     nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     
-    distanctLabel.anchor(
+    distanceLabel.anchor(
       top: nameLabel.topAnchor, leading: nil,
       bottom: nameLabel.bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
       padding: .init(top: 0, left: 0, bottom: 0, right: 16)
     )
-    distanctLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+    distanceLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
     
     midStackView.anchor(
       top: nameLabel.bottomAnchor, leading: nameLabel.leadingAnchor,
       bottom: addressLabel.topAnchor, trailing: nil,
       padding: .init(top: 6, left: 0, bottom: 6, right: 0)
     )
-    midStackView.trailingAnchor.constraint(lessThanOrEqualTo: distanctLabel.trailingAnchor).isActive = true
+    midStackView.trailingAnchor.constraint(lessThanOrEqualTo: distanceLabel.trailingAnchor).isActive = true
     starsImage.constrainHeight(constant: 14)
     
     addressLabel.anchor(
       top: midStackView.bottomAnchor, leading: nameLabel.leadingAnchor,
-      bottom: separator.topAnchor, trailing: distanctLabel.trailingAnchor,
+      bottom: separator.topAnchor, trailing: distanceLabel.trailingAnchor,
       padding: .init(top: 6, left: 0, bottom: 10, right: 0)
     )
     
@@ -236,6 +153,57 @@ private extension RestaurantCell {
       bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor,
       padding: .init(top: 10, left: 16, bottom: 0, right: 16)
     )
+  }
+  
+  // MARK: - Assign Values Methods
+  func setAddressLabel(using location: Location) {
+    var addressText = ""
+    if let address1 = location.address1 {
+      if address1 != "" {
+        addressText += address1
+      }
+    }
+    if let address2 = location.address2 {
+      if address2 != "" {
+        addressText += ", " + address2
+      }
+    }
+    if addressText == "" {
+      addressText += location.city
+    } else {
+      addressText += ", " + location.city
+    }
+    addressLabel.text = addressText
+  }
+  
+  func setStarsImage(using rating: Double) {
+    var starsImageName = "small_"
+    switch rating {
+    case 0:
+      starsImageName += "0"
+    case 1:
+      starsImageName += "1"
+    case 1.5:
+      starsImageName += "1_half"
+    case 2:
+      starsImageName += "2"
+    case 2.5:
+      starsImageName += "2_half"
+    case 3:
+      starsImageName += "3"
+    case 3.5:
+      starsImageName += "3_half"
+    case 4:
+      starsImageName += "4"
+    case 4.5:
+      starsImageName += "4_half"
+    case 5:
+      starsImageName += "5"
+    default:
+      starsImageName += "0"
+    }
+    starsImageName += ".png"
+    starsImage.image = UIImage(named: starsImageName)
   }
 }
 
