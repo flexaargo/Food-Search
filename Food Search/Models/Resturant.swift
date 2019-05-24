@@ -11,12 +11,26 @@ import Foundation
 struct YSearchResult {
   let count: Int
   let restaurants: [YRestaurantSimple]
+  let center: Coordinates
 }
 
 extension YSearchResult: Decodable {
   enum CodingKeys: String, CodingKey {
     case count = "total"
     case restaurants = "businesses"
+    case region
+    enum RegionCodingKeys: String, CodingKey {
+      case center
+    }
+  }
+  
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+    self.count = try container.decode(Int.self, forKey: .count)
+    self.restaurants = try container.decode([YRestaurantSimple].self, forKey: .restaurants)
+    let regionContainer = try container.nestedContainer(keyedBy: CodingKeys.RegionCodingKeys.self, forKey: .region)
+    self.center = try regionContainer.decode(Coordinates.self, forKey: .center)
   }
 }
 
