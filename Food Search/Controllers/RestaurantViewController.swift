@@ -246,7 +246,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
     
     cell.review = review
     cell.delegate = self
-    cell.profileImage.sd_setImage(with: URL(string: review.user.imageURL)!, completed: nil)
+    if let imageUrl = review.user.imageURL {
+      cell.profileImage.sd_setImage(with: URL(string: imageUrl)!, completed: nil)
+    }
     
     return cell
   }

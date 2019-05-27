@@ -178,7 +178,7 @@ extension YRestaurantReview: Decodable {
 struct YUser {
   let id: String
   let profileURL: String
-  let imageURL: String
+  let imageURL: String?
   let name: String
 }
 

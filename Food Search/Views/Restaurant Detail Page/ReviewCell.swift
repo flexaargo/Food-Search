@@ -55,7 +55,7 @@ class ReviewCell: UICollectionViewCell {
   weak var delegate: ReviewCellDelegate?
   
   let profileImage: UIImageView = {
-    let image = UIImageView()
+    let image = UIImageView(image: UIImage(named: "user_square.png"))
     image.backgroundColor = .lightGray
     image.layer.cornerRadius = 19
     image.clipsToBounds = true
