@@ -44,6 +44,8 @@ extension NearbyViewController {
   func updateRestaurants(restaurants: [YRestaurantSimple]) {
     if restaurants.count == 0 { return }
     
+    mapView.removeAnnotations(mapView.annotations)
+    
     for restaurant in restaurants {
       let annotation = RestaurantAnnotation(restaurant: restaurant)
       annotation.coordinate = CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude)
