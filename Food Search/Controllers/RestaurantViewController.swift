@@ -61,6 +61,14 @@ class RestaurantViewController: UIViewController {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  deinit {
+    print("DEINIT RESTAURANT VIEW CONTROLLER")
+    restaurant = nil
+    reviews = nil
+    restaurantRequest = nil
+    reviewReqiest = nil
+  }
 }
 
 // MARK: - Private Methods

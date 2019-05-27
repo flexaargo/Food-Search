@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ReviewCellDelegate {
+protocol ReviewCellDelegate: class {
   func reviewCell(_ reviewCell: ReviewCell, linkTappedWithUrl url: URL)
 }
 
@@ -52,7 +52,7 @@ class ReviewCell: UICollectionViewCell {
     }
   }
   
-  var delegate: ReviewCellDelegate?
+  weak var delegate: ReviewCellDelegate?
   
   let profileImage: UIImageView = {
     let image = UIImageView()
