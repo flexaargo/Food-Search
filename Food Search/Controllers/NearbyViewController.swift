@@ -15,6 +15,7 @@ class NearbyViewController: UIViewController {
     let mapView = MKMapView()
     mapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: "pin")
     mapView.isRotateEnabled = false
+    mapView.showsUserLocation = true
     return mapView
   }()
   
