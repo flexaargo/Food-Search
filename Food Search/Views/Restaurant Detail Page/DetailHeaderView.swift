@@ -107,7 +107,7 @@ class DetailHeaderView: UIView {
         }
       }
       
-      let currentTime = Calendar.current.component(.hour, from: Date()) * 100 + Calendar.current.component(.minute, from: Date())
+      var currentTime = Calendar.current.component(.hour, from: Date()) * 100 + Calendar.current.component(.minute, from: Date())
       if !detailHeader.isOpenNow {
 //        print("Closed")
         openStatusText.append(NSAttributedString(string: "Closed ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.primaryRed]))
@@ -129,8 +129,14 @@ class DetailHeaderView: UIView {
           var end = hours.end == "0000" ? 2400 : Int(hours.end)!
           if hours.isOvernight {
             end = 2400 + Int(hours.end)!
+            currentTime = 2400 + currentTime
           }
-          if currentTime < end && currentTime >= Int(hours.start)!{
+//          print("Current \(currentTime)")
+//          print("End \(end)")
+//          print("Start " + hours.start)
+          if end == 2400 && Int(hours.start)! == 0 {
+            openStatusText.append(NSAttributedString(string: "24hrs"))
+          } else if currentTime < end && currentTime >= Int(hours.start)!{
             let timeFormatter = DateFormatter()
             timeFormatter.dateFormat = "HHmm"
             let closingTimeDate = timeFormatter.date(from: hours.end)
