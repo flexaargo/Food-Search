@@ -66,7 +66,9 @@ extension NearbyViewController {
 // MARK: - Map View Delegate Methods
 extension NearbyViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-    let annotation = view.annotation as! RestaurantAnnotation
+    guard let annotation = view.annotation as? RestaurantAnnotation else {
+      return
+    }
     let restaurant = annotation.restaurant
     let detailsVC = RestaurantViewController(restaurantId: restaurant.id, name: restaurant.name)
     mapView.deselectAnnotation(annotation, animated: true)
