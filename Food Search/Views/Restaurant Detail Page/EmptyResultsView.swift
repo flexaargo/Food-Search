@@ -14,16 +14,12 @@ class EmptyResultsView: UIView {
     textColor: .textLight
   )
   
-  init(price: String, category: String) {
+  init() {
     super.init(frame: .zero)
     backgroundColor = .white
+    alpha = 0
     label.textAlignment = .center
     label.numberOfLines = 0
-    label.text = """
-    Oops. Try again.
-    
-    It looks like there are no \(price) \(category) restaurants open near this location.
-    """
     setupSubviews()
   }
   
@@ -43,5 +39,12 @@ private extension EmptyResultsView {
       bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor,
       padding: .init(top: 0, left: 16, bottom: 0, right: 16)
     )
+  }
+}
+
+// MARK: - Public Methods
+extension EmptyResultsView {
+  func setText(price: String, category: String) {
+    label.text = "Oops. Try again.\n\nIt looks like there are no restaurants with the inputed categories currently open near this location."
   }
 }

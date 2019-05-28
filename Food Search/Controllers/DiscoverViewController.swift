@@ -53,6 +53,8 @@ class DiscoverViewController: UIViewController {
     return picker
   }()
   
+  var emptyResultsView = EmptyResultsView()
+  
   init(nearbyVC: NearbyViewController) {
     self.nearbyVC = nearbyVC
     super.init(nibName: nil, bundle: nil)
@@ -136,9 +138,16 @@ private extension DiscoverViewController {
       bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor,
       padding: .init(top: 0, left: 0, bottom: 0, right: 0)
     )
+    
+    view.addSubview(emptyResultsView)
+    
+    emptyResultsView.anchor(
+      top: tableView.topAnchor, leading: tableView.leadingAnchor, bottom: tableView.bottomAnchor, trailing: tableView.trailingAnchor)
+    emptyResultsView.isHidden = true
   }
   
   func searchForRestaurants(useCurrentLocation: Bool = false) {
+    emptyResultsView.setText(price: price.rawValue, category: category.rawValue)
     var otherParams: [String] = []
     if useCurrentLocation {
       otherParams.append(contentsOf: [
@@ -172,7 +181,16 @@ private extension DiscoverViewController {
       DispatchQueue.main.async {
         self?.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         if restaurants.count > 0 {
+          UIView.animate(withDuration: 0.25, animations: {
+            self?.emptyResultsView.isHidden = true
+            self?.emptyResultsView.alpha = 0
+          })
           self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        } else {
+          UIView.animate(withDuration: 0.25, animations: {
+            self?.emptyResultsView.isHidden = false
+            self?.emptyResultsView.alpha = 1
+          })
         }
         self?.nearbyVC.updateRestaurants(restaurants: restaurants)
       }
