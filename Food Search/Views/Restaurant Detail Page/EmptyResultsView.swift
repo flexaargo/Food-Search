@@ -47,4 +47,23 @@ extension EmptyResultsView {
   func setText(price: String, category: String) {
     label.text = "Oops. Try again.\n\nIt looks like there are no restaurants with the inputed categories currently open near this location."
   }
+  
+  func emptyFavorites() {
+    label.text = "Nothing here!\n\nGo favorite some restaurants"
+  }
+  
+  func hide() {
+    UIView.animate(withDuration: 0.25, animations: {
+      self.alpha = 0
+    }, completion: { _ in
+      self.isHidden = true
+    })
+  }
+  
+  func show() {
+    self.isHidden = false
+    UIView.animate(withDuration: 0.25, animations: {
+      self.alpha = 1
+    })
+  }
 }

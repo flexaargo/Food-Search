@@ -193,16 +193,10 @@ private extension DiscoverViewController {
       DispatchQueue.main.async {
         self?.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         if restaurants.count > 0 {
-          UIView.animate(withDuration: 0.25, animations: {
-            self?.emptyResultsView.isHidden = true
-            self?.emptyResultsView.alpha = 0
-          })
+          self?.emptyResultsView.hide()
           self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         } else {
-          UIView.animate(withDuration: 0.25, animations: {
-            self?.emptyResultsView.isHidden = false
-            self?.emptyResultsView.alpha = 1
-          })
+          self?.emptyResultsView.show()
         }
         self?.nearbyVC.updateRestaurants(restaurants: restaurants)
       }
