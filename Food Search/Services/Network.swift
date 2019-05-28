@@ -21,7 +21,7 @@ extension NetworkRequest {
     let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, res, err) in
       guard let data = data else {
         print("\nError fetching data: \(String(describing: err))")
-        print("URL: \n\(urlRequest.url)")
+        print("URL: \n\(String(describing: urlRequest.url))")
         completion(nil)
         return
       }

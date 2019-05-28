@@ -22,7 +22,7 @@ class DiscoverViewController: UIViewController {
   private var locationManager = CLLocationManager()
   private var canUseLocation: Bool {
     let status = CLLocationManager.authorizationStatus()
-    if status != .denied || status != .notDetermined || status != .restricted
+    if status == .authorizedWhenInUse
       && CLLocationManager.locationServicesEnabled() {
       return true
     }
