@@ -16,7 +16,7 @@ class OnboardingPageFour: OnboardingBaseViewController {
   init() {
     super.init(
       titleText: "All Done",
-      detailText: "You are now all done setting up!\n\nGo search for some food!",
+      detailText: "You are now all done setting up!\n\nGo find some food!",
       image: #imageLiteral(resourceName: "onboarding_appicon"),
       pageNumber: 4
     )

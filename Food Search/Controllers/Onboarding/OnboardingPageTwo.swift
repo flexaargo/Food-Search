@@ -20,7 +20,7 @@ class OnboardingPageTwo: OnboardingBaseViewController {
   init() {
     super.init(
       titleText: "Restaurants Near You",
-      detailText: "In order to get the best experience from Food Search, we need your location to recommend restaurants near you.",
+      detailText: "In order to get the best experience from ffood, we need your location to recommend restaurants near you.",
       image: #imageLiteral(resourceName: "onboarding_pin"),
       pageNumber: 2
     )

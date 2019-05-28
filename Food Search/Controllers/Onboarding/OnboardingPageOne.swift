@@ -26,7 +26,7 @@ class OnboardingPageOne: OnboardingBaseViewController {
   
   init() {
     super.init(
-      titleText: "Welcome to Food Search",
+      titleText: "Welcome to ffood",
       detailText: "Before you can get started, there are a few things we need from you...",
       pageNumber: 1
     )
