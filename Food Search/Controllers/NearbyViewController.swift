@@ -42,9 +42,9 @@ private extension NearbyViewController {
 // MARK: - Public Methods
 extension NearbyViewController {
   func updateRestaurants(restaurants: [YRestaurantSimple]) {
-    if restaurants.count == 0 { return }
-    
     mapView.removeAnnotations(mapView.annotations)
+    
+    if restaurants.count == 0 { return }
     
     for restaurant in restaurants {
       let annotation = RestaurantAnnotation(restaurant: restaurant)
