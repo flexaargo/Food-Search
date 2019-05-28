@@ -54,6 +54,7 @@ class DiscoverViewController: UIViewController {
   }()
   
   var emptyResultsView = EmptyResultsView()
+  var activityIndicator = CustomActivityIndicator()
   
   init(nearbyVC: NearbyViewController) {
     self.nearbyVC = nearbyVC
@@ -144,10 +145,18 @@ private extension DiscoverViewController {
     emptyResultsView.anchor(
       top: tableView.topAnchor, leading: tableView.leadingAnchor, bottom: tableView.bottomAnchor, trailing: tableView.trailingAnchor)
     emptyResultsView.isHidden = true
+    
+    view.addSubview(activityIndicator)
+    
+    activityIndicator.constrainWidth(constant: 80)
+    activityIndicator.constrainWidthToHeight()
+    activityIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+    activityIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
   }
   
   func searchForRestaurants(useCurrentLocation: Bool = false) {
     emptyResultsView.setText(price: price.rawValue, category: category.rawValue)
+    activityIndicator.show()
     var otherParams: [String] = []
     if useCurrentLocation {
       otherParams.append(contentsOf: [
@@ -174,6 +183,9 @@ private extension DiscoverViewController {
     let searchResultsRequest = YelpApiRequest(resource: searchResultsResource)
     request = searchResultsRequest
     searchResultsRequest.load { [weak self] (searchResult) in
+      DispatchQueue.main.async {
+        self?.activityIndicator.hide()
+      }
       guard let restaurants = searchResult?.restaurants else {
         return
       }

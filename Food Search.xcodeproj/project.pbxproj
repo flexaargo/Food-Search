@@ -43,6 +43,7 @@
 		D0D7084B228A264400B919AD /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084A228A264400B919AD /* Categories.swift */; };
 		D0D7084D228A3A6B00B919AD /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7084C228A3A6B00B919AD /* Price.swift */; };
 		D0D88172229CF71C006C3089 /* EmptyResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D88171229CF71C006C3089 /* EmptyResultsView.swift */; };
+		D0D88174229D0482006C3089 /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D88173229D0482006C3089 /* CustomActivityIndicator.swift */; };
 		D0EDDB75229369C7007588DD /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EDDB74229369C7007588DD /* Defaults.swift */; };
 		D0F1FECD228CE22B008AC3E7 /* DetailLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F1FECC228CE22B008AC3E7 /* DetailLoadingView.swift */; };
 		F8C67715A6A40E07DD1EC928 /* Pods_Food_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583DC875069B518D2BB65237 /* Pods_Food_Search.framework */; };
@@ -90,6 +91,7 @@
 		D0D7084A228A264400B919AD /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		D0D7084C228A3A6B00B919AD /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 		D0D88171229CF71C006C3089 /* EmptyResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultsView.swift; sourceTree = "<group>"; };
+		D0D88173229D0482006C3089 /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
 		D0EDDB74229369C7007588DD /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		D0F1FECC228CE22B008AC3E7 /* DetailLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +207,7 @@
 				D02ECD6E228A635600F89F28 /* Restaurant Detail Page */,
 				D02ECD6D228A633B00F89F28 /* Discover Page */,
 				D042368C22862D66005C5FAE /* RestaurantCell.swift */,
+				D0D88173229D0482006C3089 /* CustomActivityIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				D0B7722B228BBBAB00315B0D /* DetailReviewsView.swift in Sources */,
 				D01941AF22962FAC009F9E08 /* OnboardingPageThree.swift in Sources */,
 				D042368B22862B53005C5FAE /* DiscoverTableView.swift in Sources */,
+				D0D88174229D0482006C3089 /* CustomActivityIndicator.swift in Sources */,
 				D0D7084B228A264400B919AD /* Categories.swift in Sources */,
 				D042368922859FDC005C5FAE /* Helpers.swift in Sources */,
 				D042367C22859406005C5FAE /* Colors.swift in Sources */,

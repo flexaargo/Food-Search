@@ -19,4 +19,5 @@ extension UIColor {
   public static let clearWhite = UIColor(white: 1, alpha: 0)
   public static let loadingColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.00)
   public static let loadingShimmer = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1.00)
+  public static let activtyIndicatorBackground = UIColor(red: 0.78, green: 0.78, blue: 0.78, alpha: 0.80)
 }
