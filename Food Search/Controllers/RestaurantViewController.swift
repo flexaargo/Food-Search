@@ -37,6 +37,7 @@ class RestaurantViewController: UIViewController {
     self.restaurantId = restaurantId
     title = name
     scrollView.headerView.restaurantPageBtn.addTarget(self, action: #selector(didPressYelpButton), for: .touchUpInside)
+    scrollView.mapView.getDirectionsBtn.addTarget(self, action: #selector(didPressGetDirectionsButton), for: .touchUpInside)
     scrollView.mapView.mapView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.delegate = self
     scrollView.reviewsView.reviewsCollectionView.dataSource = self
@@ -192,6 +193,20 @@ private extension RestaurantViewController {
   
   @objc func didPressYelpButton() {
     UIApplication.shared.open(URL(string: restaurant!.url)!, options: [:], completionHandler: nil)
+  }
+  
+  @objc func didPressGetDirectionsButton() {
+    let lat = restaurant!.coordinates.latitude
+    let lon = restaurant!.coordinates.longitude
+    if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
+      UIApplication.shared.open(
+        URL(string: "comgooglemaps://?saddr=&daddr=\(lat),\(lon)&directionsmode=driving")!, options: [:], completionHandler: nil)
+    } else {
+      let coordinate = CLLocationCoordinate2DMake(lat, lon)
+      let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+      mapItem.name = restaurant!.name
+      mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+    }
   }
 }
 
