@@ -170,7 +170,10 @@ private extension DiscoverViewController {
       }
       self?.restaurants = restaurants
       DispatchQueue.main.async {
-        self?.tableView.reloadData()
+        self?.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+        if restaurants.count > 0 {
+          self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
         self?.nearbyVC.updateRestaurants(restaurants: restaurants)
       }
     }
