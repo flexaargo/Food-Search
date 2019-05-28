@@ -58,7 +58,11 @@ private extension FavoritesViewController {
       self.restaurants.sort(by: { (r1, r2) -> Bool in
         r1.name < r2.name
       })
-      self.tableView.reloadData()
+      
+      self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+      if self.restaurants.count > 0 {
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+      }
     }
   }
   
