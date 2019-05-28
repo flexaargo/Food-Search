@@ -51,7 +51,7 @@ enum Categories: String, CaseIterable {
 	case chicken_wings = "Chicken Wings"
 //  case chickenshop = "Chicken Shop"
 //  case chilean = "Chilean"
-//  case chinese = "Chinese"
+  case chinese = "Chinese"
 //  case comfortfood = "Comfort Food"
 //  case corsican = "Corsican"
 //  case creperies = "Creperies"
@@ -284,8 +284,8 @@ enum Categories: String, CaseIterable {
 //      return "chickenshop"
 //    case .chilean:
 //      return "chilean"
-//    case .chinese:
-//      return "chinese"
+    case .chinese:
+      return "chinese"
 //    case .comfortfood:
 //      return "comfortfood"
 //    case .corsican:
