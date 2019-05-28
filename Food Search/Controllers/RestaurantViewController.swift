@@ -176,7 +176,13 @@ private extension RestaurantViewController {
     
     scrollView.mapView.location = restaurant!.coordinates
     
-    scrollView.imageView.sd_setImage(with: URL(string: restaurant!.imageURL)!, completed: nil)
+    if let imageURL = restaurant?.imageURL {
+      scrollView.imageView.sd_setImage(with: URL(string: imageURL)!, completed: nil)
+    } else {
+      let noImagesLabel = UILabel(text: "No Images Available", font: .systemFont(ofSize: 20), textColor: .textLight)
+      scrollView.imageView.addSubview(noImagesLabel)
+      noImagesLabel.centerInSuperview()
+    }
   }
   
   @objc func saveRestaurant() {
