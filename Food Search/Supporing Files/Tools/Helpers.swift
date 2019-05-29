@@ -39,7 +39,7 @@ public func stackV(_ views: UIView..., spacing: CGFloat = 0,
 }
 
 class PaddedTextField: UITextField {
-  var padding: UIEdgeInsets!
+  var padding: UIEdgeInsets?
   
   public convenience init(font: UIFont, placeholder: String, backgroundColor: UIColor, cornerRadius: CGFloat = 0, padding: UIEdgeInsets = .zero) {
     self.init()
@@ -51,14 +51,23 @@ class PaddedTextField: UITextField {
   }
   
   override func textRect(forBounds bounds: CGRect) -> CGRect {
+    guard let padding = padding else {
+      return bounds
+    }
     return bounds.inset(by: padding)
   }
   
   override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+    guard let padding = padding else {
+      return bounds
+    }
     return bounds.inset(by: padding)
   }
   
   override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    guard let padding = padding else {
+      return bounds
+    }
     return bounds.inset(by: padding)
   }
 }
