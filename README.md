@@ -55,6 +55,9 @@ Make sure to open **Food Search.xcworkspace**.
 
 You should now be able to run the project.
 
+## To Do
+[Here](https://trello.com/b/A9wD8cMS) is a link to the Trello board.
+
 ## Built With
 
 * [Yelp Fusion API](https://www.yelp.com/developers/documentation/v3/) - API used to retrieve all restaurant data
