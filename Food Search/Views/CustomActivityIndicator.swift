@@ -24,7 +24,6 @@ class CustomActivityIndicator: UIView {
 //    backgroundColor = .activtyIndicatorBackground
     layer.cornerRadius = 16
     clipsToBounds = true
-    hide()
     setupSubviews()
   }
   
@@ -49,6 +48,7 @@ private extension CustomActivityIndicator {
 // MARK: - Public Methods
 extension CustomActivityIndicator {
   func show() {
+    aiv.isHidden = false
     aiv.startAnimating()
     UIView.animate(withDuration: 0.2) {
       self.alpha = 1
