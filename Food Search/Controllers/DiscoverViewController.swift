@@ -28,7 +28,7 @@ class DiscoverViewController: UIViewController {
     }
     return false
   }
-  private var currentLocation: CLLocationCoordinate2D!
+  private var lastLocation: CLLocationCoordinate2D?
   private var searchLocation: String!
   
   lazy var searchView: DiscoverSearchView = {
@@ -85,6 +85,18 @@ class DiscoverViewController: UIViewController {
       appLaunch()
     }
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    locationManager.startUpdatingLocation()
+  }
+  
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    
+    locationManager.stopUpdatingLocation()
+  }
 }
 
 // MARK: - Private Methods
@@ -101,7 +113,7 @@ private extension DiscoverViewController {
     
     // MARK: Location Manager Setup
     locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+    locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     
     // MARK: Table View Setup
     tableView.delegate = self
@@ -158,10 +170,10 @@ private extension DiscoverViewController {
     emptyResultsView.setText(price: price.rawValue, category: category.rawValue)
     activityIndicator.show()
     var otherParams: [String] = []
-    if useCurrentLocation {
+    if useCurrentLocation, let lastLocation = lastLocation {
       otherParams.append(contentsOf: [
-        "latitude=\(currentLocation.latitude)",
-        "longitude=\(currentLocation.longitude)"
+        "latitude=\(lastLocation.latitude)",
+        "longitude=\(lastLocation.longitude)"
       ])
     } else {
       otherParams.append(contentsOf: [
@@ -205,7 +217,7 @@ private extension DiscoverViewController {
   
   func search() {
     if searchLocation == "Current Location" {
-      locationManager.requestLocation()
+      searchForRestaurants(useCurrentLocation: true)
     } else {
       searchForRestaurants()
     }
@@ -242,7 +254,10 @@ private extension DiscoverViewController {
     let locationField = searchView.locationField
     if locationField.text! == "Current Location" {
       searchLocation = nil
-      if !canUseLocation {
+      if !canUseLocation || lastLocation == nil {
+        let ac = UIAlertController(title: "Can't use current location", message: "There was an error accessing your location. Make sure that you have location services enabled.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(ac, animated: true)
         searchView.setLocationFieldToBackupLocation()
       }
     }
@@ -366,12 +381,7 @@ extension DiscoverViewController: UITextFieldDelegate {
 // MARK: - Location Manager Delegate Methods
 extension DiscoverViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    let loc = locations[0]
-    currentLocation = loc.coordinate
-    searchForRestaurants(useCurrentLocation: true)
-  }
-  
-  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    searchForRestaurants()
+    let loc = locations.last
+    lastLocation = loc?.coordinate
   }
 }
