@@ -4,6 +4,8 @@
 
 This app will help you decide what you should eat by recommending restaurants to you based on 3 given criteria. Location. Cuisine. And price.
 
+[Download](https://testflight.apple.com/join/ovBZMF73) now on TestFlight!
+
 ## Motivation
 
 My friends and I always seem find ourselves wondering what to eat, so I set out to create an app that could decide that for us. I know there is Yelp which is great for searching for food if you already kinda know what you want, but I couldn't find anything on the AppStore like the old UrbanSpoon app that would recommend a restaurant to you based on 3 criteria. Location, cuisine, and price.
